@@ -16,7 +16,6 @@
         :root { 
             --naranja: #ff8500; --rojo: #d00000; --negro: #121212; 
             --blanco: #ffffff; --fb-blue: #1877F2; --mostaza: #ffb703;
-            --gris: #f8f8f8;
         }
         body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--negro); margin: 0; padding: 10px; color: #333; overflow-x: hidden; }
         .container { max-width: 500px; margin: auto; background: var(--blanco); border-radius: 25px; overflow: hidden; border: 3px solid var(--naranja); position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -33,6 +32,8 @@
         .btn-fb { background: var(--fb-blue); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 0.85em; }
 
         .categoria-titulo { background: var(--negro); color: var(--mostaza); padding: 12px 15px; margin: 0; border-left: 8px solid var(--rojo); font-size: 1em; text-transform: uppercase; letter-spacing: 1px; }
+        .promo-banner { background: #fff5f5; border-left: 8px solid var(--rojo); margin: 0; padding: 10px 15px; font-weight: bold; color: var(--rojo); font-size: 0.9em; }
+        
         .producto { padding: 15px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; }
         .prod-main { display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .precio { color: var(--rojo); font-weight: 800; font-size: 1.1em; }
@@ -57,13 +58,11 @@
 <div id="modal-salsas" class="modal-overlay">
     <div class="modal-content">
         <h3 id="modal-titulo">Salsas</h3>
-        <p style="font-size:0.7em; color:var(--rojo); font-weight:bold;">🔥=Picoso | 🌶️=Medio | ✨=Bajo</p>
+        <p id="subtitulo-salsas" style="font-size:0.75em; color:var(--rojo); font-weight:bold; margin-bottom:10px;"></p>
         <div id="lista-salsas" style="max-height: 250px; overflow-y: auto; margin:10px 0;"></div>
         
         <div id="extra-opciones" style="display:none; margin-bottom:10px; padding:10px; background:#f0f0f0; border-radius:10px;">
-            <label style="font-size:0.8em; font-weight:bold;">
-                <input type="checkbox" id="chk-solo-boneless" onchange="toggleExtraPrecio()"> ¿Puros boneless? (+$20)
-            </label>
+            <label style="font-size:0.8em; font-weight:bold;"><input type="checkbox" id="chk-solo-boneless" onchange="toggleExtraPrecio()"> ¿Puros boneless? (+$20)</label>
         </div>
 
         <button id="btn-confirmar-salsas" class="btn-add" style="width:100%; display:none;">CONFIRMAR SELECCIÓN</button>
@@ -108,6 +107,13 @@
         <label style="display:block; margin-top:10px; font-weight:bold;"><input type="checkbox" id="chk-like" onchange="actualizarUI()"> ¡YA LOS SIGO!</label>
     </div>
 
+    <h3 class="categoria-titulo">Promociones Semanales 🎊</h3>
+    <div class="producto">
+        <div class="prod-main"><strong>Miércoles de Boneless</strong><span class="precio">$300</span></div>
+        <p class="descripcion">3 órdenes de boneless. Elige 2 salsas por orden (6 en total).</p>
+        <button class="btn-add" onclick="abrirSalsas('PROMO Miércoles: 3 Órd. Boneless', 300, 6)">+</button>
+    </div>
+
     <h3 class="categoria-titulo">Alitas & Boneless 🍗</h3>
     <div class="producto"><div class="prod-main"><strong>Orden Individual</strong><span class="precio">$120</span></div><p class="descripcion">Hasta 2 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Orden', 120, 2)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Medio Kilo</strong><span class="precio">$170</span></div><p class="descripcion">Hasta 3 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Medio Kilo', 170, 3)">+</button></div>
@@ -122,7 +128,7 @@
     <div class="producto"><div class="prod-main"><strong>Hamb. Boneless</strong><span class="precio">$120</span></div><p class="descripcion">Boneless bañados en tu salsa favorita.</p><button class="btn-add" onclick="abrirSalsas('Hamb. Boneless', 120, 2)">+</button></div>
 
     <h3 class="categoria-titulo">Complementos 🍟</h3>
-    <div class="producto"><div class="prod-main"><strong>Papas Francesas</strong><span class="precio">$60</span></div><p class="descripcion">Corte tradicional, saladitas.</p><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas', 55)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Papas Francesas</strong><span class="precio">$55</span></div><p class="descripcion">Corte tradicional, saladitas.</p><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas', 55)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Papas Gajo/Criscut</strong><span class="precio">$60</span></div><p class="descripcion">Papas sazonadas crujientes.</p><button class="btn-add" onclick="agregarAlCarrito('Papas Gajo/Criscut', 60)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Papas Locas</strong><span class="precio">$100</span></div><p class="descripcion">Bañadas en salsa y aderezo especial.</p><button class="btn-add" onclick="abrirSalsas('Papas Locas', 100, 1)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Papas Súper Locas</strong><span class="precio">$150</span></div><p class="descripcion">Con extra topping y más sabor.</p><button class="btn-add" onclick="abrirSalsas('Papas Súper Locas', 150, 1)">+</button></div>
@@ -176,6 +182,7 @@
     function abrirSalsas(nombre, precio, limite, rustica = false) {
         productoActual = { nombre, precio }; limiteSalsas = limite; salsasSeleccionadas = []; esCharolaRustica = rustica;
         document.getElementById('modal-titulo').innerText = `Elige ${limite} salsas`;
+        document.getElementById('subtitulo-salsas').innerText = (limite > 4) ? "🔥 2 Salsas por orden 🔥" : "Selecciona tus favoritas:";
         document.getElementById('extra-opciones').style.display = rustica ? 'block' : 'none';
         document.getElementById('chk-solo-boneless').checked = false;
         const cont = document.getElementById('lista-salsas'); cont.innerHTML = '';
@@ -184,7 +191,7 @@
             chip.onclick = () => {
                 if(chip.classList.contains('selected')) { chip.classList.remove('selected'); salsasSeleccionadas = salsasSeleccionadas.filter(x => x !== s); }
                 else if(salsasSeleccionadas.length < limiteSalsas) { chip.classList.add('selected'); salsasSeleccionadas.push(s); }
-                document.getElementById('btn-confirmar-salsas').style.display = salsasSeleccionadas.length > 0 ? 'block' : 'none';
+                document.getElementById('btn-confirmar-salsas').style.display = salsasSeleccionadas.length === limiteSalsas ? 'block' : 'none';
             };
             cont.appendChild(chip);
         });
@@ -194,10 +201,7 @@
     document.getElementById('btn-confirmar-salsas').onclick = () => {
         let nombreFinal = productoActual.nombre;
         let precioFinal = productoActual.precio;
-        if(esCharolaRustica && document.getElementById('chk-solo-boneless').checked) {
-            nombreFinal += " (Puros Boneless)";
-            precioFinal += 20;
-        }
+        if(esCharolaRustica && document.getElementById('chk-solo-boneless').checked) { nombreFinal += " (Puros Boneless)"; precioFinal += 20; }
         agregarAlCarrito(`${nombreFinal} (${salsasSeleccionadas.join(", ")})`, precioFinal);
         cerrarModales();
     };
@@ -225,10 +229,4 @@
             div.innerHTML = `<span>• ${i.nombre} ($${i.precio})</span> <button class="btn-del" onclick="eliminarDelCarrito(${i.id})">✕</button>`;
             l.appendChild(div);
         });
-        let desc = document.getElementById('chk-like').checked ? (subtotal * 0.10) : 0;
-        document.getElementById('total').innerText = (subtotal - desc).toFixed(2);
-        document.getElementById('nota-envio').style.display = document.getElementById('entrega').value === 'Domicilio' ? 'block' : 'none';
-    }
-</script>
-</body>
-</html>
+        let desc = document.getElementById('chk-like').checked ? (subtotal *
