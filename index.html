@@ -22,13 +22,11 @@
         body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--negro); margin: 0; padding: 10px; color: #333; }
         .container { max-width: 500px; margin: auto; background: var(--blanco); border-radius: 25px; overflow: hidden; border: 3px solid var(--naranja); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
         
-        /* HEADER */
         .header { position: relative; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--negro); }
         .portada { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.pexels.com/photos/10361458/pexels-photo-10361458.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size: cover; background-position: center; filter: brightness(0.5); z-index: 1; }
         .logo { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--mostaza); z-index: 2; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .header h1 { color: white; z-index: 2; margin-top: 10px; font-size: 1.4em; text-shadow: 2px 2px 8px #000; font-weight: 900; letter-spacing: 2px; }
 
-        /* IA SECCIÓN */
         .ia-section { background: #fff3cd; margin: 15px; padding: 15px; border-radius: 20px; border: 2px dashed var(--naranja); text-align: center; }
         .btn-ia { background: white; border: 2px solid var(--naranja); padding: 6px; border-radius: 12px; cursor: pointer; font-size: 0.75em; font-weight: bold; flex: 1; margin: 2px; }
 
@@ -48,7 +46,6 @@
         .salsa-chip { display: block; padding: 12px; margin: 8px 0; border: 2px solid var(--naranja); border-radius: 12px; font-size: 0.9em; cursor: pointer; font-weight: bold; text-align: left; }
         .salsa-chip.selected { background: var(--naranja); color: white; }
 
-        /* VENTA SUGERIDA (UPSell) */
         .upsell-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; }
         .btn-upsell { background: #f0f0f0; border: 1px solid #ddd; padding: 10px; border-radius: 10px; font-size: 0.75em; cursor: pointer; font-weight: bold; }
 
@@ -59,7 +56,8 @@
         input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; box-sizing: border-box; font-size: 1em; }
         textarea { height: 80px; resize: none; font-family: inherit; }
         
-        .nota-envio { color: var(--rojo); font-weight: bold; font-size: 0.85em; margin-top: 8px; display: none; background: #fff1f1; border: 1px solid var(--rojo); padding: 10px; border-radius: 8px; text-align: center; }
+        /* NOTA DE ENVIO ROJA */
+        .nota-envio { color: var(--rojo); font-weight: 900; font-size: 0.85em; margin-top: 8px; display: none; background: #fff1f1; border: 2px solid var(--rojo); padding: 12px; border-radius: 12px; text-align: center; }
         .btn-whatsapp { background: #25d366; color: white; border: none; width: 90%; display: block; margin: 20px auto; padding: 20px; font-size: 1.2em; font-weight: bold; border-radius: 15px; cursor: pointer; box-shadow: 0 6px 0 #128c7e; }
     </style>
 </head>
@@ -154,7 +152,9 @@
             <option value="Domicilio">📍 Envío a Domicilio</option>
             <option value="PickUp">🏎️ Pasar a Recoger (Pick Up)</option>
         </select>
-        <div id="nota-envio" class="nota-envio">🏍️ Precio Final + Envío<br><small>(Se cotiza al enviar ubicación)</small></div>
+        <div id="nota-envio" class="nota-envio">
+            ⚠️ ATENCIÓN:<br>Para servicio a domicilio, el costo de envío se cotiza al enviar tu ubicación exacta.
+        </div>
     </div>
     <div class="form-group">
         <label>Pago:</label>
@@ -282,7 +282,14 @@
         carrito.forEach(i => msg += `- ${i.nombre}%0A`);
         if(c) msg += `------------------%0ANotas: ${c}%0A`;
         msg += `------------------%0A*TOTAL:* $${document.getElementById('total').innerText}`;
-        if(e === 'Domicilio') msg += `%0A%0A📍 *Enviaré mi ubicación abajo.*%0A⚠️ *No incluye envío.*`;
+        
+        // MODIFICACIÓN PARA DOMICILIO (MENSAJE CLARO)
+        if(e === 'Domicilio') {
+            msg += `%0A%0A📍 *ENVIARÉ MI UBICACIÓN ABAJO.*%0A⚠️ *Costo de envío por cotizar.*`;
+        }
+        
+        if(p === 'Transferencia') msg += `%0A%0A📱 *Espero datos para transferencia.*`;
+        
         window.open(`https://wa.me/528334434833?text=${msg}`);
     }
 
@@ -290,7 +297,4 @@
 
     function actualizarUI() {
         const l = document.getElementById('lista-carrito'); l.innerHTML = '';
-        carrito.forEach(i => l.innerHTML += `<li>• ${i.nombre} <span style="float:right">$${i.precio}</span></li>`);
-        let desc = document.getElementById('chk-like').checked ? (subtotal * 0.10) : 0;
-        document.getElementById('total').innerText = (subtotal - desc).toFixed(2);
-        doc
+        carrito.forEach(i => l.innerHTML += `<li>• ${i.nombre} <span style="float:right">$${i.pre
