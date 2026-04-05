@@ -39,12 +39,10 @@
         .descripcion { font-size: 0.8em; color: #666; margin-top: 4px; font-style: italic; }
         .btn-add { background: var(--naranja); color: white; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #cc6a00; }
 
-        /* CARRITO CON ELIMINACIÓN */
         .cart-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 8px 12px; margin-bottom: 5px; border-radius: 10px; border: 1px solid #ddd; font-size: 0.85em; }
         .btn-del { background: #fee2e2; color: #dc2626; border: none; padding: 5px 10px; border-radius: 8px; font-weight: bold; cursor: pointer; }
         .btn-clear { background: #333; color: white; border: none; padding: 5px 12px; border-radius: 8px; font-size: 0.7em; cursor: pointer; margin-bottom: 10px; }
 
-        /* MODALES */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 20px; border-radius: 20px; width: 85%; max-width: 350px; text-align: center; border: 4px solid var(--naranja); }
         .salsa-chip { display: block; padding: 12px; margin: 8px 0; border: 2px solid var(--naranja); border-radius: 12px; cursor: pointer; font-weight: bold; text-align: left; }
@@ -92,6 +90,7 @@
         <button class="btn-ia" onclick="sugerir(1)">Solo yo 🙋‍♂️</button>
         <button class="btn-ia" onclick="sugerir(2)">Pareja 👩‍❤️‍👨</button>
         <button class="btn-ia" onclick="sugerir(4)">Team 🥳</button>
+        <button class="btn-ia" style="background:#ffdaeb;" onclick="sugerir(0)">Niños 🐣</button>
         <div id="sugerencia-box" style="display:none; margin-top:10px; padding:10px; background:white; border-radius:12px; border:1px solid #ffeeba;">
             <p id="ia-texto" style="font-size:0.8em; font-weight:bold;"></p>
             <div id="ia-opciones"></div>
@@ -104,22 +103,28 @@
     </div>
 
     <h3 class="categoria-titulo">Alitas & Boneless 🍗</h3>
-    <div class="producto"><div class="prod-main"><strong>Orden Individual</strong><span class="precio">$120</span></div><p class="descripcion">Hasta 2 salsas.</p><button class="btn-add" onclick="abrirSalsas('Orden', 120, 2)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Medio Kilo</strong><span class="precio">$170</span></div><p class="descripcion">Hasta 3 salsas.</p><button class="btn-add" onclick="abrirSalsas('Medio Kilo', 170, 3)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>El Kilo</strong><span class="precio">$320</span></div><p class="descripcion">Hasta 4 salsas.</p><button class="btn-add" onclick="abrirSalsas('Kilo', 320, 4)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Orden Individual</strong><span class="precio">$120</span></div><button class="btn-add" onclick="abrirSalsas('Orden', 120, 2)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Medio Kilo</strong><span class="precio">$170</span></div><button class="btn-add" onclick="abrirSalsas('Medio Kilo', 170, 3)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>El Kilo</strong><span class="precio">$320</span></div><button class="btn-add" onclick="abrirSalsas('Kilo', 320, 4)">+</button></div>
 
     <h3 class="categoria-titulo">Para Compartir 🤝</h3>
-    <div class="producto"><div class="prod-main"><strong>Charola Rústica</strong><span class="precio">$310</span></div><p class="descripcion">Alitas, Boneless, Papas y Dedos.</p><button class="btn-add" onclick="abrirSalsas('Charola Rústica', 310, 2)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Charola Familiar</strong><span class="precio">$380</span></div><p class="descripcion">1 Kilo, Papas y Refresco 2L.</p><button class="btn-add" onclick="abrirSalsas('Charola Familiar', 380, 4)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Charola Rústica</strong><span class="precio">$310</span></div><button class="btn-add" onclick="abrirSalsas('Charola Rústica', 310, 2)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Charola Familiar</strong><span class="precio">$380</span></div><button class="btn-add" onclick="abrirSalsas('Charola Familiar', 380, 4)">+</button></div>
 
     <h3 class="categoria-titulo">Hamburguesas 🍔</h3>
     <div class="producto"><div class="prod-main"><strong>Hamb. Arrachera</strong><span class="precio">$95</span></div><button class="btn-add" onclick="agregarAlCarrito('Hamb. Arrachera', 95)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Hamb. Boneless</strong><span class="precio">$120</span></div><button class="btn-add" onclick="abrirSalsas('Hamb. Boneless', 120, 2)">+</button></div>
 
     <h3 class="categoria-titulo">Complementos 🍟</h3>
+    <div class="producto"><div class="prod-main"><strong>Papas Francesas</strong><span class="precio">$55</span></div><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas', 55)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Papas Gajo/Criscut</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Papas Gajo/Criscut', 60)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Papas Locas</strong><span class="precio">$100</span></div><button class="btn-add" onclick="abrirSalsas('Papas Locas', 100, 1)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Papas Súper Locas</strong><span class="precio">$150</span></div><button class="btn-add" onclick="abrirSalsas('Papas Súper Locas', 150, 1)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Dedos de Queso (6 pz)</strong><span class="precio">$90</span></div><button class="btn-add" onclick="agregarAlCarrito('Dedos de Queso', 90)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Aros de Cebolla</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Aros de Cebolla', 60)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Chillie Cheese</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Chillie Cheese', 60)">+</button></div>
     <div class="producto"><div class="prod-main"><strong>Burripizza</strong><span class="precio">$65</span></div><button class="btn-add" onclick="agregarAlCarrito('Burripizza', 65)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Burritos Tradicionales</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Burritos Tradic.', 60)">+</button></div>
 
     <div class="form-group" style="margin-top:20px;">
         <label>👤 <b>Tu Nombre:</b></label><input type="text" id="cliente" placeholder="¿Quién recibe?">
@@ -141,7 +146,7 @@
     <div class="resumen">
         <div style="display:flex; justify-content:space-between; align-items:center;">
             <strong>🛒 Tu Carrito:</strong>
-            <button class="btn-clear" onclick="limpiarCarrito()">🗑️ Vaciar Carrito</button>
+            <button class="btn-clear" onclick="limpiarCarrito()">🗑️ Vaciar Todo</button>
         </div>
         <div id="lista-carrito"></div>
         <div style="font-size:1.4em; font-weight:900; color:var(--rojo); margin-top:10px;">TOTAL: $<span id="total">0</span></div>
@@ -151,12 +156,9 @@
 </div>
 
 <script>
-    let carrito = [];
-    let subtotal = 0;
+    let carrito = []; let subtotal = 0;
     const menuSalsas = ["Mango habanero 🔥", "Búfalo 🔥", "Mango cremoso 🔥", "Pica fresa 🔥", "Chipotle 🌶️", "Tamarindo hot 🌶️", "BBQ hot 🌶️", "Parmesano ✨", "BBQ ✨", "Tamarindo ✨", "Lemon paper ✨"];
-    let salsasSeleccionadas = [];
-    let limiteSalsas = 0;
-    let productoActual = null;
+    let salsasSeleccionadas = []; let limiteSalsas = 0; let productoActual = null;
 
     function cerrarModales() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
 
@@ -164,13 +166,14 @@
         const box = document.getElementById('sugerencia-box'); box.style.display = 'block';
         const opt = document.getElementById('ia-opciones'); opt.innerHTML = '';
         const txt = document.getElementById('ia-texto');
-        if(num === 1) { txt.innerText = "🙋‍♂️ Recomendado:"; crearBotonIA(opt, "Orden Ind.", 120, 2); crearBotonIA(opt, "Papas Súper Locas", 150, 1); }
+        if(num === 1) { txt.innerText = "🙋‍♂️ Solo yo:"; crearBotonIA(opt, "Orden Ind.", 120, 2); crearBotonIA(opt, "Papas Súper Locas", 150, 1); }
         else if(num === 2) { txt.innerText = "👩‍❤️‍👨 Pareja:"; crearBotonIA(opt, "Charola Rústica", 310, 2); }
+        else if(num === 0) { txt.innerText = "🐣 Niños:"; crearBotonIA(opt, "Burripizza", 65, 0); crearBotonIA(opt, "Papas Fr.", 55, 0); }
         else { txt.innerText = "🥳 Team:"; crearBotonIA(opt, "El Kilo", 320, 4); crearBotonIA(opt, "Charola Familiar", 380, 4); }
     }
 
     function crearBotonIA(cont, n, p, s) {
-        let b = document.createElement('button'); b.className = 'btn-add'; b.style.fontSize = '0.7em'; b.style.margin = '2px'; b.innerText = `+ ${n}`;
+        let b = document.createElement('button'); b.className = 'btn-add'; b.style.fontSize = '0.75em'; b.style.margin = '2px'; b.innerText = `+ ${n}`;
         b.onclick = () => s > 0 ? abrirSalsas(n, p, s) : agregarAlCarrito(n, p);
         cont.appendChild(b);
     }
@@ -196,33 +199,12 @@
         cerrarModales();
     };
 
-    function agregarAlCarrito(nombre, precio) {
-        carrito.push({id: Date.now(), nombre, precio});
-        subtotal += precio;
-        actualizarUI();
-    }
-
-    function eliminarDelCarrito(id) {
-        const item = carrito.find(i => i.id === id);
-        if(item) {
-            subtotal -= item.precio;
-            carrito = carrito.filter(i => i.id !== id);
-            actualizarUI();
-        }
-    }
-
-    function limpiarCarrito() {
-        if(confirm("¿Seguro que quieres vaciar todo el carrito?")) {
-            carrito = []; subtotal = 0; actualizarUI();
-        }
-    }
-
+    function agregarAlCarrito(nombre, precio) { carrito.push({id: Date.now() + Math.random(), nombre, precio}); subtotal += precio; actualizarUI(); }
+    function eliminarDelCarrito(id) { const item = carrito.find(i => i.id === id); if(item) { subtotal -= item.precio; carrito = carrito.filter(i => i.id !== id); actualizarUI(); } }
+    function limpiarCarrito() { if(confirm("¿Vaciar todo?")) { carrito = []; subtotal = 0; actualizarUI(); } }
     function agregarUpsell(n, p) { agregarAlCarrito(n, p); alert("¡Añadido! 🍟"); }
 
-    function mostrarUpsell() {
-        if(!document.getElementById('cliente').value || carrito.length === 0) return alert("Por favor pon tu nombre y elige algo del menú.");
-        document.getElementById('modal-upsell').style.display = 'flex';
-    }
+    function mostrarUpsell() { if(!document.getElementById('cliente').value || carrito.length === 0) return alert("Pon tu nombre y elige algo."); document.getElementById('modal-upsell').style.display = 'flex'; }
 
     function finalizarPedidoReal() {
         const n = document.getElementById('cliente').value, e = document.getElementById('entrega').value, p = document.getElementById('pago').value, c = document.getElementById('comentarios').value;
