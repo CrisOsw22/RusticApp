@@ -13,75 +13,45 @@
     <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22The%20Rustic%20Wings%22,%22short_name%22:%22RusticWings%22,%22start_url%22:%22index.html%22,%22display%22:%22standalone%22,%22background_color%22:%22%23121212%22,%22theme_color%22:%22%23ff8500%22,%22icons%22:[{%22src%22:%22https://i.postimg.cc/Bvp7Pn1S/IMG-20260404-WA0006.jpg%22,%22sizes%22:%22512x512%22,%22type%22:%22image/jpg%22}]}">
 
     <style>
-        :root { 
-            --naranja: #ff8500; --rojo: #d00000; --negro: #121212; 
-            --blanco: #ffffff; --fb-blue: #1877F2; --mostaza: #ffb703;
-        }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--negro); margin: 0; padding: 10px; color: #333; overflow-x: hidden; }
-        .container { max-width: 500px; margin: auto; background: var(--blanco); border-radius: 25px; overflow: hidden; border: 3px solid var(--naranja); position: relative; z-index: 1; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        :root { --naranja: #ff8500; --rojo: #d00000; --negro: #121212; --blanco: #ffffff; --mostaza: #ffb703; }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
+        body { font-family: sans-serif; background: var(--negro); margin: 0; padding: 10px; color: #333; }
         
-        .header { position: relative; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--negro); }
-        .portada { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.pexels.com/photos/10361458/pexels-photo-10361458.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size: cover; background-position: center; filter: brightness(0.4); z-index: 1; }
-        .logo { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--mostaza); z-index: 2; object-fit: cover; }
-        .header h1 { color: white; z-index: 2; margin: 10px 0 0 0; font-size: 1.4em; text-shadow: 2px 2px 8px #000; font-weight: 900; letter-spacing: 1px; }
-
-        .ia-section { background: #fff3cd; margin: 15px; padding: 15px; border-radius: 20px; border: 2px dashed var(--naranja); text-align: center; }
-        .btn-ia { background: white; border: 2px solid var(--naranja); padding: 8px; border-radius: 12px; cursor: pointer; font-size: 0.8em; font-weight: bold; margin: 3px; }
-
-        .fb-promo { background: #e7f3ff; padding: 15px; margin: 10px; border-radius: 15px; border: 1px solid var(--fb-blue); text-align: center; }
-        .btn-fb { background: var(--fb-blue); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 0.85em; }
-
-        .categoria-titulo { background: var(--negro); color: var(--mostaza); padding: 12px 15px; margin: 0; border-left: 8px solid var(--rojo); font-size: 1em; text-transform: uppercase; letter-spacing: 1px; }
-        .promo-banner { background: #fff5f5; border-left: 8px solid var(--rojo); margin: 0; padding: 10px 15px; font-weight: bold; color: var(--rojo); font-size: 0.9em; }
+        .container { max-width: 500px; margin: auto; background: var(--blanco); border-radius: 25px; overflow: hidden; border: 3px solid var(--naranja); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        .producto { padding: 15px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; }
-        .prod-main { display: flex; justify-content: space-between; align-items: center; width: 100%; }
-        .precio { color: var(--rojo); font-weight: 800; font-size: 1.1em; }
-        .descripcion { font-size: 0.8em; color: #666; margin-top: 4px; font-style: italic; padding-right: 60px; }
-        .btn-add { background: var(--naranja); color: white; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #cc6a00; }
+        .header { position: relative; height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; }
+        .portada { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.pexels.com/photos/10361458/pexels-photo-10361458.jpeg?auto=compress&cs=tinysrgb&w=800') center/cover; filter: brightness(0.4); }
+        .logo { width: 80px; height: 80px; border-radius: 50%; border: 3px solid var(--mostaza); z-index: 2; }
+        .header h1 { color: white; z-index: 2; margin: 10px 0 0; font-size: 1.3em; text-shadow: 2px 2px 4px #000; }
 
-        .cart-item { display: flex; justify-content: space-between; align-items: center; background: white; padding: 8px 12px; margin-bottom: 5px; border-radius: 10px; border: 1px solid #ddd; font-size: 0.85em; }
-        .btn-del { background: #fee2e2; color: #dc2626; border: none; padding: 5px 10px; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .btn-clear { background: #333; color: white; border: none; padding: 5px 12px; border-radius: 8px; font-size: 0.7em; cursor: pointer; margin-bottom: 10px; }
+        .section { padding: 15px; }
+        .ia-box { background: #fff3cd; padding: 15px; border-radius: 20px; border: 2px dashed var(--naranja); text-align: center; margin-bottom: 15px; }
+        
+        .categoria-titulo { background: var(--negro); color: var(--mostaza); padding: 10px 15px; margin: 0; border-left: 8px solid var(--rojo); font-size: 1em; text-transform: uppercase; }
+        
+        .producto { padding: 15px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; position: relative; }
+        .precio { color: var(--rojo); font-weight: bold; font-size: 1.1em; }
+        .descripcion { font-size: 0.8em; color: #666; margin-top: 4px; padding-right: 80px; }
+        
+        .btn-add { background: var(--naranja); color: white; border: none; padding: 12px 20px; border-radius: 12px; cursor: pointer; font-weight: bold; position: absolute; right: 15px; top: 15px; z-index: 5; touch-action: manipulation; }
+        .btn-ia { background: white; border: 2px solid var(--naranja); padding: 8px; border-radius: 10px; margin: 3px; font-weight: bold; cursor: pointer; touch-action: manipulation; }
 
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; justify-content: center; align-items: center; }
-        .modal-content { background: white; padding: 20px; border-radius: 20px; width: 85%; max-width: 350px; text-align: center; border: 4px solid var(--naranja); }
-        .salsa-chip { display: block; padding: 12px; margin: 8px 0; border: 2px solid var(--naranja); border-radius: 12px; cursor: pointer; font-weight: bold; text-align: left; }
+        /* MODALES FIJOS */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: white; padding: 20px; border-radius: 20px; width: 100%; max-width: 400px; text-align: center; position: relative; }
+        
+        .salsa-chip { display: block; padding: 12px; margin: 8px 0; border: 2px solid var(--naranja); border-radius: 12px; font-weight: bold; cursor: pointer; text-align: left; background: #fff; }
         .salsa-chip.selected { background: var(--naranja); color: white; }
 
-        input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; font-size: 16px; margin-top: 5px; box-sizing: border-box; }
-        .btn-whatsapp { background: #25d366; color: white; border: none; width: 90%; display: block; margin: 20px auto; padding: 20px; font-size: 1.1em; font-weight: bold; border-radius: 15px; cursor: pointer; box-shadow: 0 6px 0 #128c7e; }
+        .cart-item { display: flex; justify-content: space-between; align-items: center; background: #f9f9f9; padding: 10px; margin-bottom: 5px; border-radius: 10px; border: 1px solid #ddd; }
+        .btn-del { background: #fee2e2; color: #dc2626; border: none; padding: 5px 12px; border-radius: 8px; font-weight: bold; }
+
+        .btn-whatsapp { background: #25d366; color: white; border: none; width: 100%; padding: 18px; font-size: 1.1em; font-weight: bold; border-radius: 15px; margin-top: 20px; cursor: pointer; touch-action: manipulation; }
+        
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; font-size: 16px; margin: 5px 0; display: block; }
     </style>
 </head>
 <body>
-
-<div id="modal-salsas" class="modal-overlay">
-    <div class="modal-content">
-        <h3 id="modal-titulo">Salsas</h3>
-        <p id="subtitulo-salsas" style="font-size:0.75em; color:var(--rojo); font-weight:bold; margin-bottom:10px;"></p>
-        <div id="lista-salsas" style="max-height: 250px; overflow-y: auto; margin:10px 0;"></div>
-        
-        <div id="extra-opciones" style="display:none; margin-bottom:10px; padding:10px; background:#f0f0f0; border-radius:10px;">
-            <label style="font-size:0.8em; font-weight:bold;"><input type="checkbox" id="chk-solo-boneless" onchange="toggleExtraPrecio()"> ¿Puros boneless? (+$20)</label>
-        </div>
-
-        <button id="btn-confirmar-salsas" class="btn-add" style="width:100%; display:none;">CONFIRMAR SELECCIÓN</button>
-        <button onclick="cerrarModales()" style="margin-top:10px; background:none; border:none; color:gray;">Cancelar</button>
-    </div>
-</div>
-
-<div id="modal-upsell" class="modal-overlay">
-    <div class="modal-content">
-        <h3 style="color: var(--rojo);">¿No olvidas algo? 🤔</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0;">
-            <button class="btn-ia" style="font-size:0.7em;" onclick="agregarUpsell('Papas Francesas', 55)">🍟 Papas Fr. (+$55)</button>
-            <button class="btn-ia" style="font-size:0.7em;" onclick="agregarUpsell('Dedos de Queso', 90)">🧀 Dedos (+$90)</button>
-            <button class="btn-ia" style="font-size:0.7em;" onclick="agregarUpsell('Aros de Cebolla', 60)">🧅 Aros (+$60)</button>
-            <button class="btn-ia" style="font-size:0.7em;" onclick="agregarUpsell('Burripizza', 65)">🍕 Burripizza (+$65)</button>
-        </div>
-        <button class="btn-whatsapp" style="width:100%;" onclick="finalizarPedidoReal()">✅ ASÍ ESTÁ BIEN, PEDIR</button>
-    </div>
-</div>
 
 <div class="container">
     <div class="header">
@@ -90,143 +60,161 @@
         <h1>THE RUSTIC WINGS</h1>
     </div>
 
-    <div class="ia-section">
-        <strong>✨ RUSTIC IA: ¿Para cuántos pedimos?</strong><br>
-        <button class="btn-ia" onclick="sugerir(1)">Solo yo 🙋‍♂️</button>
-        <button class="btn-ia" onclick="sugerir(2)">Pareja 👩‍❤️‍👨</button>
-        <button class="btn-ia" onclick="sugerir(4)">Team 🥳</button>
-        <button class="btn-ia" style="background:#ffdaeb;" onclick="sugerir(0)">Niños 🐣</button>
-        <div id="sugerencia-box" style="display:none; margin-top:10px; padding:10px; background:white; border-radius:12px; border:1px solid #ffeeba;">
-            <p id="ia-texto" style="font-size:0.8em; font-weight:bold;"></p>
-            <div id="ia-opciones"></div>
+    <div class="section">
+        <div class="ia-box">
+            <strong>✨ RUSTIC IA: ¿Cuántos son?</strong><br>
+            <button class="btn-ia" onclick="sugerir(1)">Solo yo</button>
+            <button class="btn-ia" onclick="sugerir(2)">Pareja</button>
+            <button class="btn-ia" onclick="sugerir(4)">Team</button>
+            <button class="btn-ia" onclick="sugerir(0)" style="background:#ffdaeb;">Niños</button>
+            <div id="sugerencia-box" style="display:none; margin-top:10px; font-size:0.85em;">
+                <p id="ia-texto" style="font-weight:bold;"></p>
+                <div id="ia-opciones"></div>
+            </div>
         </div>
+
+        <h3 class="categoria-titulo">Promociones Semanales 🎊</h3>
+        <div class="producto">
+            <strong>Miércoles de Boneless - $300</strong>
+            <span class="descripcion">3 órdenes. Elige 6 salsas en total (2 por orden).</span>
+            <button class="btn-add" onclick="abrirSalsas('PROMO Miércoles', 300, 6)">+</button>
+        </div>
+
+        <h3 class="categoria-titulo">Alitas & Boneless 🍗</h3>
+        <div class="producto">
+            <strong>Orden Individual - $120</strong>
+            <span class="descripcion">Hasta 2 salsas.</span>
+            <button class="btn-add" onclick="abrirSalsas('Orden Ind.', 120, 2)">+</button>
+        </div>
+        <div class="producto">
+            <strong>Medio Kilo - $170</strong>
+            <span class="descripcion">Hasta 3 salsas.</span>
+            <button class="btn-add" onclick="abrirSalsas('Medio Kilo', 170, 3)">+</button>
+        </div>
+
+        <h3 class="categoria-titulo">Para Compartir 🤝</h3>
+        <div class="producto">
+            <strong>Charola Rústica - $310</strong>
+            <span class="descripcion">Alitas, boneless, papas y dedos.</span>
+            <button class="btn-add" onclick="abrirSalsas('Charola Rústica', 310, 2, true)">+</button>
+        </div>
+
+        <h3 class="categoria-titulo">Complementos 🍟</h3>
+        <div class="producto"><strong>Papas Francesas - $55</strong><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas', 55)">+</button></div>
+        <div class="producto"><strong>Burripizza - $65</strong><button class="btn-add" onclick="agregarAlCarrito('Burripizza', 65)">+</button></div>
+
+        <div style="margin-top:20px;">
+            <input type="text" id="cliente" placeholder="Tu Nombre">
+            <select id="entrega" onchange="actualizarUI()">
+                <option value="Domicilio">📍 Domicilio</option>
+                <option value="PickUp">🏎️ Recoger</option>
+            </select>
+            <textarea id="comentarios" placeholder="Notas adicionales..."></textarea>
+        </div>
+
+        <div style="margin-top:20px; border-top: 2px solid #eee; padding-top:15px;">
+            <div style="display:flex; justify-content:space-between;">
+                <strong>🛒 Carrito:</strong>
+                <button onclick="limpiarCarrito()" style="font-size:0.7em; border:none; background:none; color:gray;">Vaciar</button>
+            </div>
+            <div id="lista-carrito" style="margin-top:10px;"></div>
+            <div style="font-size:1.3em; font-weight:bold; color:var(--rojo); margin-top:10px;">TOTAL: $<span id="total">0</span></div>
+        </div>
+
+        <button class="btn-whatsapp" onclick="finalizarPedido()">🚀 ENVIAR POR WHATSAPP</button>
     </div>
+</div>
 
-    <div class="fb-promo">
-        <a href="https://www.facebook.com/share/1CcMNWFvoM/" target="_blank" class="btn-fb">👍 FACEBOOK (10% OFF)</a>
-        <label style="display:block; margin-top:10px; font-weight:bold;"><input type="checkbox" id="chk-like" onchange="actualizarUI()"> ¡YA LOS SIGO!</label>
+<div id="modal-salsas" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modal-titulo">Salsas</h3>
+        <div id="extra-rustica" style="display:none; background:#eee; padding:10px; border-radius:10px; margin-bottom:10px;">
+            <label><input type="checkbox" id="chk-boneless"> ¿Puros boneless? (+$20)</label>
+        </div>
+        <div id="lista-salsas" style="max-height: 200px; overflow-y: auto;"></div>
+        <button id="btn-conf-salsa" class="btn-whatsapp" style="display:none;">CONFIRMAR SALSAS</button>
+        <button onclick="cerrarModales()" style="background:none; border:none; margin-top:15px; color:gray;">Cancelar</button>
     </div>
-
-    <h3 class="categoria-titulo">Promociones Semanales 🎊</h3>
-    <div class="producto">
-        <div class="prod-main"><strong>Miércoles de Boneless</strong><span class="precio">$300</span></div>
-        <p class="descripcion">3 órdenes de boneless. Elige 2 salsas por orden (6 en total).</p>
-        <button class="btn-add" onclick="abrirSalsas('PROMO Miércoles: 3 Órd. Boneless', 300, 6)">+</button>
-    </div>
-
-    <h3 class="categoria-titulo">Alitas & Boneless 🍗</h3>
-    <div class="producto"><div class="prod-main"><strong>Orden Individual</strong><span class="precio">$120</span></div><p class="descripcion">Hasta 2 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Orden', 120, 2)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Medio Kilo</strong><span class="precio">$170</span></div><p class="descripcion">Hasta 3 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Medio Kilo', 170, 3)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>El Kilo</strong><span class="precio">$320</span></div><p class="descripcion">Hasta 4 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Kilo', 320, 4)">+</button></div>
-
-    <h3 class="categoria-titulo">Para Compartir 🤝</h3>
-    <div class="producto"><div class="prod-main"><strong>Charola Rústica</strong><span class="precio">$310</span></div><p class="descripcion">Alitas, Boneless, Papas y Dedos.</p><button class="btn-add" onclick="abrirSalsas('Charola Rústica', 310, 2, true)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Charola Familiar</strong><span class="precio">$380</span></div><p class="descripcion">1 Kilo, Papas y Refresco 2L.</p><button class="btn-add" onclick="abrirSalsas('Charola Familiar', 380, 4)">+</button></div>
-
-    <h3 class="categoria-titulo">Hamburguesas 🍔</h3>
-    <div class="producto"><div class="prod-main"><strong>Hamb. Arrachera</strong><span class="precio">$95</span></div><p class="descripcion">Carne de arrachera, queso y vegetales.</p><button class="btn-add" onclick="agregarAlCarrito('Hamb. Arrachera', 95)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Hamb. Boneless</strong><span class="precio">$120</span></div><p class="descripcion">Boneless bañados en tu salsa favorita.</p><button class="btn-add" onclick="abrirSalsas('Hamb. Boneless', 120, 2)">+</button></div>
-
-    <h3 class="categoria-titulo">Complementos 🍟</h3>
-    <div class="producto"><div class="prod-main"><strong>Papas Francesas</strong><span class="precio">$55</span></div><p class="descripcion">Corte tradicional, saladitas.</p><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas', 55)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Papas Gajo/Criscut</strong><span class="precio">$60</span></div><p class="descripcion">Papas sazonadas crujientes.</p><button class="btn-add" onclick="agregarAlCarrito('Papas Gajo/Criscut', 60)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Papas Locas</strong><span class="precio">$100</span></div><p class="descripcion">Bañadas en salsa y aderezo especial.</p><button class="btn-add" onclick="abrirSalsas('Papas Locas', 100, 1)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Papas Súper Locas</strong><span class="precio">$150</span></div><p class="descripcion">Con extra topping y más sabor.</p><button class="btn-add" onclick="abrirSalsas('Papas Súper Locas', 150, 1)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Dedos de Queso (6 pz)</strong><span class="precio">$90</span></div><button class="btn-add" onclick="agregarAlCarrito('Dedos de Queso', 90)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Aros de Cebolla</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Aros de Cebolla', 60)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Chillie Cheese</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Chillie Cheese', 60)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Burripizza</strong><span class="precio">$65</span></div><button class="btn-add" onclick="agregarAlCarrito('Burripizza', 65)">+</button></div>
-    <div class="producto"><div class="prod-main"><strong>Burritos Tradicionales</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Burritos Tradic.', 60)">+</button></div>
-
-    <div style="padding:15px;">
-        <label>👤 <b>Tu Nombre:</b></label><input type="text" id="cliente" placeholder="¿Quién recibe?">
-        <label style="margin-top:10px; display:block;">🛵 <b>Entrega:</b></label>
-        <select id="entrega" onchange="actualizarUI()"><option value="Domicilio">📍 Domicilio</option><option value="PickUp">🏎️ Recoger</option></select>
-        <div id="nota-envio" style="display:none; color:red; font-size:0.8em; font-weight:bold; padding:10px;">⚠️ Costo de envío se cotiza por ubicación.</div>
-        <label style="margin-top:10px; display:block;">💳 <b>Pago:</b></label>
-        <select id="pago"><option value="Efectivo">💵 Efectivo</option><option value="Transferencia">📱 Transferencia</option></select>
-        <textarea id="comentarios" placeholder="Notas: Ej. Sin cebolla..." style="margin-top:10px;"></textarea>
-    </div>
-
-    <div class="resumen">
-        <div style="display:flex; justify-content:space-between; align-items:center;"><strong>🛒 Tu Carrito:</strong><button class="btn-clear" onclick="limpiarCarrito()">🗑️ Vaciar Todo</button></div>
-        <div id="lista-carrito"></div>
-        <div style="font-size:1.4em; font-weight:900; color:var(--rojo); margin-top:10px;">TOTAL: $<span id="total">0</span></div>
-    </div>
-    <button class="btn-whatsapp" onclick="mostrarUpsell()">🚀 PEDIR POR WHATSAPP</button>
 </div>
 
 <script>
     let carrito = []; let subtotal = 0;
-    const menuSalsas = ["Mango habanero 🔥", "Búfalo 🔥", "Mango cremoso 🔥", "Pica fresa 🔥", "Chipotle 🌶️", "Tamarindo hot 🌶️", "BBQ hot 🌶️", "Parmesano ✨", "BBQ ✨", "Tamarindo ✨", "Lemon paper ✨"];
-    let salsasSeleccionadas = []; let limiteSalsas = 0; let productoActual = null; let esCharolaRustica = false;
+    let salsasSeleccionadas = []; let limiteSalsas = 0; let productoActual = null;
+    const salsasMenu = ["Mango habanero 🔥", "Búfalo 🔥", "Chipotle 🌶️", "BBQ ✨", "Lemon paper ✨", "Parmesano ✨"];
 
     function cerrarModales() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
 
     function sugerir(num) {
-        const box = document.getElementById('sugerencia-box'); box.style.display = 'block';
+        document.getElementById('sugerencia-box').style.display = 'block';
         const opt = document.getElementById('ia-opciones'); opt.innerHTML = '';
-        const txt = document.getElementById('ia-texto');
-        if(num === 1) { txt.innerText = "🙋‍♂️ Solo yo:"; crearBotonIA(opt, "Orden Ind.", 120, 2); crearBotonIA(opt, "Papas Súper Locas", 150, 1); }
-        else if(num === 2) { txt.innerText = "👩‍❤️‍👨 Pareja:"; crearBotonIA(opt, "Charola Rústica", 310, 2, true); }
-        else if(num === 0) { txt.innerText = "🐣 Niños:"; crearBotonIA(opt, "Burripizza", 65, 0); crearBotonIA(opt, "Papas Fr.", 55, 0); }
-        else { txt.innerText = "🥳 Team:"; crearBotonIA(opt, "El Kilo", 320, 4); crearBotonIA(opt, "Charola Familiar", 380, 4); }
+        if(num === 1) { crearBtnIA(opt, "Orden Ind.", 120, 2); }
+        else if(num === 0) { crearBtnIA(opt, "Burripizza", 65, 0); }
+        else { crearBtnIA(opt, "Charola Rústica", 310, 2, true); }
     }
 
-    function crearBotonIA(cont, n, p, s, rustica = false) {
-        let b = document.createElement('button'); b.className = 'btn-add'; b.style.fontSize = '0.75em'; b.style.margin = '2px'; b.innerText = `+ ${n}`;
-        b.onclick = () => s > 0 ? abrirSalsas(n, p, s, rustica) : agregarAlCarrito(n, p);
+    function crearBtnIA(cont, n, p, s, r = false) {
+        let b = document.createElement('button'); b.className = 'btn-ia'; b.innerText = `+ ${n}`;
+        b.onclick = () => s > 0 ? abrirSalsas(n, p, s, r) : agregarAlCarrito(n, p);
         cont.appendChild(b);
     }
 
-    function abrirSalsas(nombre, precio, limite, rustica = false) {
-        productoActual = { nombre, precio }; limiteSalsas = limite; salsasSeleccionadas = []; esCharolaRustica = rustica;
-        document.getElementById('modal-titulo').innerText = `Elige ${limite} salsas`;
-        document.getElementById('subtitulo-salsas').innerText = (limite > 4) ? "🔥 2 Salsas por orden 🔥" : "Selecciona tus favoritas:";
-        document.getElementById('extra-opciones').style.display = rustica ? 'block' : 'none';
-        document.getElementById('chk-solo-boneless').checked = false;
+    function abrirSalsas(n, p, l, r = false) {
+        productoActual = {n, p}; limiteSalsas = l; salsasSeleccionadas = [];
+        document.getElementById('modal-titulo').innerText = `Elige ${l} salsas`;
+        document.getElementById('extra-rustica').style.display = r ? 'block' : 'none';
+        document.getElementById('chk-boneless').checked = false;
         const cont = document.getElementById('lista-salsas'); cont.innerHTML = '';
-        menuSalsas.forEach(s => {
-            const chip = document.createElement('div'); chip.className = 'salsa-chip'; chip.innerText = s;
-            chip.onclick = () => {
-                if(chip.classList.contains('selected')) { chip.classList.remove('selected'); salsasSeleccionadas = salsasSeleccionadas.filter(x => x !== s); }
-                else if(salsasSeleccionadas.length < limiteSalsas) { chip.classList.add('selected'); salsasSeleccionadas.push(s); }
-                document.getElementById('btn-confirmar-salsas').style.display = salsasSeleccionadas.length === limiteSalsas ? 'block' : 'none';
+        salsasMenu.forEach(s => {
+            let d = document.createElement('div'); d.className = 'salsa-chip'; d.innerText = s;
+            d.onclick = () => {
+                if(d.classList.contains('selected')) { d.classList.remove('selected'); salsasSeleccionadas = salsasSeleccionadas.filter(x => x !== s); }
+                else if(salsasSeleccionadas.length < limiteSalsas) { d.classList.add('selected'); salsasSeleccionadas.push(s); }
+                document.getElementById('btn-conf-salsa').style.display = (salsasSeleccionadas.length > 0) ? 'block' : 'none';
             };
-            cont.appendChild(chip);
+            cont.appendChild(d);
         });
         document.getElementById('modal-salsas').style.display = 'flex';
     }
 
-    document.getElementById('btn-confirmar-salsas').onclick = () => {
-        let nombreFinal = productoActual.nombre;
-        let precioFinal = productoActual.precio;
-        if(esCharolaRustica && document.getElementById('chk-solo-boneless').checked) { nombreFinal += " (Puros Boneless)"; precioFinal += 20; }
-        agregarAlCarrito(`${nombreFinal} (${salsasSeleccionadas.join(", ")})`, precioFinal);
+    document.getElementById('btn-conf-salsa').onclick = () => {
+        let n = productoActual.n, p = productoActual.p;
+        if(document.getElementById('chk-boneless').checked) { n += " (Puros Boneless)"; p += 20; }
+        agregarAlCarrito(`${n} (${salsasSeleccionadas.join(", ")})`, p);
         cerrarModales();
     };
 
-    function agregarAlCarrito(nombre, precio) { carrito.push({id: Date.now() + Math.random(), nombre, precio}); subtotal += precio; actualizarUI(); }
-    function eliminarDelCarrito(id) { const item = carrito.find(i => i.id === id); if(item) { subtotal -= item.precio; carrito = carrito.filter(i => i.id !== id); actualizarUI(); } }
-    function limpiarCarrito() { if(confirm("¿Vaciar todo?")) { carrito = []; subtotal = 0; actualizarUI(); } }
-    function agregarUpsell(n, p) { agregarAlCarrito(n, p); alert("¡Añadido! 🍟"); }
-    function mostrarUpsell() { if(!document.getElementById('cliente').value || carrito.length === 0) return alert("Pon tu nombre y elige algo."); document.getElementById('modal-upsell').style.display = 'flex'; }
-
-    function finalizarPedidoReal() {
-        const n = document.getElementById('cliente').value, e = document.getElementById('entrega').value, p = document.getElementById('pago').value, c = document.getElementById('comentarios').value;
-        let msg = `*THE RUSTIC WINGS*%0A👤 Cliente: ${n}%0A🛵 Entrega: ${e}%0A💳 Pago: ${p}%0A------------------%0A`;
-        carrito.forEach(i => msg += `- ${i.nombre}%0A`);
-        if(c) msg += `------------------%0A📝 Notas: ${c}%0A`;
-        msg += `------------------%0A💰 TOTAL: $${document.getElementById('total').innerText}`;
-        window.open(`https://wa.me/528334434833?text=${msg}`);
-        cerrarModales();
+    function agregarAlCarrito(n, p) {
+        carrito.push({id: Date.now(), n, p});
+        subtotal += p;
+        actualizarUI();
     }
+
+    function eliminarDelCarrito(id) {
+        let i = carrito.find(x => x.id === id);
+        if(i) { subtotal -= i.p; carrito = carrito.filter(x => x.id !== id); }
+        actualizarUI();
+    }
+
+    function limpiarCarrito() { if(confirm("¿Vaciar?")) { carrito = []; subtotal = 0; actualizarUI(); } }
 
     function actualizarUI() {
         const l = document.getElementById('lista-carrito'); l.innerHTML = '';
         carrito.forEach(i => {
-            const div = document.createElement('div'); div.className = 'cart-item';
-            div.innerHTML = `<span>• ${i.nombre} ($${i.precio})</span> <button class="btn-del" onclick="eliminarDelCarrito(${i.id})">✕</button>`;
-            l.appendChild(div);
+            let d = document.createElement('div'); d.className = 'cart-item';
+            d.innerHTML = `<span>${i.n} ($${i.p})</span> <button class="btn-del" onclick="eliminarDelCarrito(${i.id})">✕</button>`;
+            l.appendChild(d);
         });
-        let desc = document.getElementById('chk-like').checked ? (subtotal *
+        document.getElementById('total').innerText = subtotal;
+    }
+
+    function finalizarPedido() {
+        const cl = document.getElementById('cliente').value;
+        if(!cl || carrito.length === 0) return alert("Falta nombre o productos");
+        let msg = `*PEDIDO RUSTIC*%0ACliente: ${cl}%0AEntrega: ${document.getElementById('entrega').value}%0A----------------%0A`;
+        carrito.forEach(i => msg += `- ${i.n}%0A`);
+        msg += `----------------%0ATOTAL: $${subtotal}`;
+        window.open(`https://wa.me/528334434833?text=${msg}`);
+    }
+</script>
+</body>
+</html>
