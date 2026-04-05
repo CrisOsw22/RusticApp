@@ -7,8 +7,12 @@
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Rustic Wings">
     <link rel="apple-touch-icon" href="https://i.postimg.cc/Bvp7Pn1S/IMG-20260404-WA0006.jpg">
     <link rel="icon" type="image/png" href="https://i.postimg.cc/Bvp7Pn1S/IMG-20260404-WA0006.jpg">
+    <meta name="theme-color" content="#ff8500">
+
+    <link rel="manifest" href="data:application/manifest+json,{%22name%22:%22The%20Rustic%20Wings%22,%22short_name%22:%22RusticWings%22,%22start_url%22:%22index.html%22,%22display%22:%22standalone%22,%22background_color%22:%22%23121212%22,%22theme_color%22:%22%23ff8500%22,%22icons%22:[{%22src%22:%22https://i.postimg.cc/Bvp7Pn1S/IMG-20260404-WA0006.jpg%22,%22sizes%22:%22512x512%22,%22type%22:%22image/jpg%22}]}">
 
     <style>
         :root { 
@@ -163,25 +167,16 @@
 <script>
     let carrito = [];
     let subtotal = 0;
-    const menuSalsas = [
-        "Mango habanero 🔥", "Búfalo 🔥", "Mango cremoso 🔥", "Pica fresa 🔥", 
-        "Chipotle 🌶️", "Tamarindo hot 🌶️", "BBQ hot 🌶️",
-        "Parmesano ✨", "BBQ ✨", "Tamarindo ✨", "Lemon paper ✨"
-    ];
+    const menuSalsas = ["Mango habanero 🔥", "Búfalo 🔥", "Mango cremoso 🔥", "Pica fresa 🔥", "Chipotle 🌶️", "Tamarindo hot 🌶️", "BBQ hot 🌶️", "Parmesano ✨", "BBQ ✨", "Tamarindo ✨", "Lemon paper ✨"];
     let salsasSeleccionadas = [];
     let limiteSalsas = 0;
     let productoActual = null;
 
-    function cerrarModales() {
-        document.getElementById('modal-salsas').style.display = 'none';
-        document.getElementById('modal-upsell').style.display = 'none';
-    }
+    function cerrarModales() { document.getElementById('modal-salsas').style.display = 'none'; document.getElementById('modal-upsell').style.display = 'none'; }
 
     function sugerir(num) {
-        const box = document.getElementById('sugerencia-box');
-        box.style.display = 'block';
-        const opt = document.getElementById('ia-opciones');
-        opt.innerHTML = '';
+        const box = document.getElementById('sugerencia-box'); box.style.display = 'block';
+        const opt = document.getElementById('ia-opciones'); opt.innerHTML = '';
         const txt = document.getElementById('ia-texto');
         if(num === 1) { 
             txt.innerText = "🙋‍♂️ Recomendado para ti:"; 
@@ -190,11 +185,7 @@
         }
         else if(num === 2) { txt.innerText = "👩‍❤️‍👨 Recomendado:"; crearBotonIA(opt, "Charola Rústica", 310, 2); }
         else if(num === 0) { txt.innerText = "🐣 Niños:"; crearBotonIA(opt, "Burripizza", 65, 0); crearBotonIA(opt, "Papas Fr.", 55, 0); }
-        else { 
-            txt.innerText = "🥳 Recomendado:"; 
-            crearBotonIA(opt, "El Kilo", 320, 4);
-            crearBotonIA(opt, "Charola Familiar", 380, 4);
-        }
+        else { txt.innerText = "🥳 Recomendado:"; crearBotonIA(opt, "El Kilo", 320, 4); crearBotonIA(opt, "Charola Familiar", 380, 4); }
     }
 
     function crearBotonIA(cont, n, p, s) {
@@ -204,22 +195,14 @@
     }
 
     function abrirSalsas(nombre, precio, limite) {
-        productoActual = { nombre, precio };
-        limiteSalsas = limite; salsasSeleccionadas = [];
+        productoActual = { nombre, precio }; limiteSalsas = limite; salsasSeleccionadas = [];
         document.getElementById('modal-titulo').innerText = `Elige ${limite} salsas`;
-        const cont = document.getElementById('lista-salsas');
-        cont.innerHTML = '';
+        const cont = document.getElementById('lista-salsas'); cont.innerHTML = '';
         menuSalsas.forEach(s => {
-            const chip = document.createElement('div');
-            chip.className = 'salsa-chip'; chip.innerText = s;
+            const chip = document.createElement('div'); chip.className = 'salsa-chip'; chip.innerText = s;
             chip.onclick = () => {
-                if(chip.classList.contains('selected')) {
-                    chip.classList.remove('selected');
-                    salsasSeleccionadas = salsasSeleccionadas.filter(x => x !== s);
-                } else if(salsasSeleccionadas.length < limiteSalsas) {
-                    chip.classList.add('selected');
-                    salsasSeleccionadas.push(s);
-                }
+                if(chip.classList.contains('selected')) { chip.classList.remove('selected'); salsasSeleccionadas = salsasSeleccionadas.filter(x => x !== s); }
+                else if(salsasSeleccionadas.length < limiteSalsas) { chip.classList.add('selected'); salsasSeleccionadas.push(s); }
                 document.getElementById('btn-confirmar-salsas').style.display = salsasSeleccionadas.length > 0 ? 'block' : 'none';
             };
             cont.appendChild(chip);
@@ -232,12 +215,7 @@
         cerrarModales();
     };
 
-    function agregarAlCarrito(nombre, precio) {
-        carrito.push({nombre, precio});
-        subtotal += precio;
-        actualizarUI();
-    }
-
+    function agregarAlCarrito(nombre, precio) { carrito.push({nombre, precio}); subtotal += precio; actualizarUI(); }
     function agregarUpsell(n, p) { agregarAlCarrito(n, p); alert("¡Añadido! 🍟"); }
 
     function mostrarUpsell() {
@@ -254,10 +232,8 @@
         carrito.forEach(i => msg += `- ${i.nombre}%0A`);
         if(c) msg += `------------------%0A📝 Notas: ${c}%0A`;
         msg += `------------------%0A💰 TOTAL: $${document.getElementById('total').innerText}`;
-        
         if(e === 'Domicilio') msg += `%0A%0A📍 *ENVIARÉ MI UBICACIÓN ABAJO.*%0A⚠️ *Costo de envío por cotizar.*`;
         if(p.includes('Transferencia')) msg += `%0A%0A📲 *Favor de enviarme los datos para transferencia.*`;
-        
         window.open(`https://wa.me/528334434833?text=${msg}`);
         cerrarModales();
     }
