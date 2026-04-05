@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rustic Wings - App Oficial</title>
+    <style>
+        :root { 
+            --naranja: #ff8500; --rojo: #d00000; --negro: #121212; 
+            --blanco: #ffffff; --fb-blue: #1877F2; --mostaza: #ffb703;
+            --gris: #f8f8f8;
+        }
+        body { font-family: 'Segoe UI', Roboto, sans-serif; background: var(--negro); margin: 0; padding: 10px; color: #333; }
+        .container { max-width: 500px; margin: auto; background: var(--blanco); border-radius: 25px; overflow: hidden; border: 3px solid var(--naranja); box-shadow: 0 15px 35px rgba(0,0,0,0.5); }
+        
+        /* HEADER */
+        .header { position: relative; height: 180px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--negro); }
+        .portada { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.pexels.com/photos/10361458/pexels-photo-10361458.jpeg?auto=compress&cs=tinysrgb&w=800'); background-size: cover; background-position: center; filter: brightness(0.5); z-index: 1; }
+        .logo { width: 90px; height: 90px; border-radius: 50%; border: 3px solid var(--mostaza); z-index: 2; object-fit: cover; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        .header h1 { color: white; z-index: 2; margin-top: 10px; font-size: 1.4em; text-shadow: 2px 2px 8px #000; font-weight: 900; letter-spacing: 2px; }
+
+        /* IA SECCIÓN */
+        .ia-section { background: #fff3cd; margin: 15px; padding: 15px; border-radius: 20px; border: 2px dashed var(--naranja); text-align: center; }
+        .btn-ia { background: white; border: 2px solid var(--naranja); padding: 6px; border-radius: 12px; cursor: pointer; font-size: 0.75em; font-weight: bold; flex: 1; margin: 2px; }
+
+        .fb-promo { background: #e7f3ff; padding: 15px; margin: 10px; border-radius: 15px; border: 1px solid var(--fb-blue); text-align: center; }
+        .btn-fb { background: var(--fb-blue); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; font-size: 0.85em; }
+
+        .categoria-titulo { background: var(--negro); color: var(--mostaza); padding: 12px 15px; margin: 0; border-left: 8px solid var(--rojo); font-size: 1em; text-transform: uppercase; letter-spacing: 1px; }
+        .producto { padding: 15px; border-bottom: 1px solid #eee; display: flex; flex-direction: column; }
+        .prod-main { display: flex; justify-content: space-between; align-items: center; }
+        .precio { color: var(--rojo); font-weight: 800; font-size: 1.1em; }
+        .descripcion { font-size: 0.8em; color: #666; margin-top: 5px; font-style: italic; }
+        .btn-add { background: var(--naranja); color: white; border: none; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-weight: bold; box-shadow: 0 4px 0 #cc6a00; }
+
+        /* MODALES */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 100; justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 25px; border-radius: 20px; width: 85%; max-width: 350px; text-align: center; border: 4px solid var(--naranja); }
+        .salsa-chip { display: block; padding: 12px; margin: 8px 0; border: 2px solid var(--naranja); border-radius: 12px; font-size: 0.9em; cursor: pointer; font-weight: bold; text-align: left; }
+        .salsa-chip.selected { background: var(--naranja); color: white; }
+
+        /* VENTA SUGERIDA */
+        .upsell-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; }
+        .btn-upsell { background: #f0f0f0; border: 1px solid #ddd; padding: 10px; border-radius: 10px; font-size: 0.75em; cursor: pointer; font-weight: bold; }
+
+        .resumen { padding: 15px; margin: 15px; background: var(--gris); border-radius: 15px; border: 1px solid #ddd; position: relative; }
+        .btn-clear { background: #666; color: white; border: none; padding: 5px 10px; border-radius: 8px; font-size: 0.7em; cursor: pointer; position: absolute; top: 15px; right: 15px; }
+        
+        .form-group { padding: 0 15px; margin-bottom: 12px; }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; box-sizing: border-box; font-size: 1em; }
+        textarea { height: 80px; resize: none; font-family: inherit; }
+        
+        .nota-envio { color: var(--rojo); font-weight: bold; font-size: 0.85em; margin-top: 8px; display: none; background: #fff1f1; border: 1px solid var(--rojo); padding: 10px; border-radius: 8px; text-align: center; }
+        .btn-whatsapp { background: #25d366; color: white; border: none; width: 90%; display: block; margin: 20px auto; padding: 20px; font-size: 1.2em; font-weight: bold; border-radius: 15px; cursor: pointer; box-shadow: 0 6px 0 #128c7e; }
+    </style>
+</head>
+<body>
+
+<div id="modal-salsas" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modal-titulo">🔥 Sabores Rustic</h3>
+        <p id="modal-instruccion" style="font-size: 0.8em; font-weight: bold; color: var(--rojo);"></p>
+        <div id="lista-salsas" style="max-height: 300px; overflow-y: auto;"></div>
+        <button id="btn-confirmar-salsas" class="btn-add" style="margin-top:15px; width:100%; display:none;">AÑADIR AL CARRITO</button>
+    </div>
+</div>
+
+<div id="modal-upsell" class="modal-overlay">
+    <div class="modal-content">
+        <h3 style="color: var(--rojo); margin: 0;">¿No olvidas algo? 🤔</h3>
+        <p style="font-size: 0.85em; margin: 10px 0;">¡Nuestros complementos son el cierre perfecto!</p>
+        <div class="upsell-grid">
+            <button class="btn-upsell" onclick="agregarUpsell('Papas Francesas', 55)">🍟 Papas Fr. (+$55)</button>
+            <button class="btn-upsell" onclick="agregarUpsell('Dedos de Queso', 90)">🧀 Dedos (+$90)</button>
+            <button class="btn-upsell" onclick="agregarUpsell('Aros de Cebolla', 60)">🧅 Aros (+$60)</button>
+            <button class="btn-upsell" onclick="agregarUpsell('Chillie Cheese', 60)">🌶️ Chillie (+$60)</button>
+            <button class="btn-upsell" onclick="agregarUpsell('Burripizza', 65)">🍕 Burripizza (+$65)</button>
+            <button class="btn-upsell" onclick="agregarUpsell('Burritos Tradic.', 60)">🌯 Burritos (+$60)</button>
+        </div>
+        <button class="btn-whatsapp" style="width:100%; margin: 10px 0;" onclick="finalizarPedidoReal()">✅ ASÍ ESTÁ BIEN, PEDIR</button>
+        <button onclick="cerrarUpsell()" style="background:none; border:none; color:#999; cursor:pointer; font-size:0.8em;">Volver al menú</button>
+    </div>
+</div>
+
+<div class="container">
+    <div class="header">
+        <div class="portada"></div>
+        <img src="https://i.postimg.cc/Bvp7Pn1S/IMG-20260404-WA0006.jpg" class="logo">
+        <h1>THE RUSTIC WINGS</h1>
+    </div>
+
+    <div class="ia-section">
+        <div style="font-size: 0.85em; font-weight: 900; color: #856404; margin-bottom: 8px;">✨ RUSTIC IA: ¿Para cuántos pedimos?</div>
+        <div style="display:flex; flex-wrap: wrap; justify-content: center;">
+            <button class="btn-ia" onclick="sugerir(1)">Solo yo 🙋‍♂️</button>
+            <button class="btn-ia" onclick="sugerir(2)">Pareja 👩‍❤️‍👨</button>
+            <button class="btn-ia" onclick="sugerir(4)">Team 🥳</button>
+            <button class="btn-ia" style="background:#ffdaeb;" onclick="sugerir(0)">Niños 🐣</button>
+        </div>
+        <div id="sugerencia-box" style="display:none; margin-top:12px; background:white; padding:12px; border-radius:12px; border: 1px solid #ffeeba;">
+            <p id="ia-texto" style="font-size: 0.85em; font-weight: bold; margin-bottom: 8px;"></p>
+            <div id="ia-opciones" style="display:flex; flex-direction:column; gap:8px;"></div>
+        </div>
+    </div>
+
+    <div class="fb-promo">
+        <a href="https://www.facebook.com/share/1CcMNWFvoM/" target="_blank" class="btn-fb">👍 FACEBOOK (10% OFF)</a>
+        <div style="font-size: 0.9em; font-weight: bold; margin-top: 10px;">
+            <input type="checkbox" id="chk-like" onchange="actualizarUI()"> ¡YA LOS SIGO!
+        </div>
+    </div>
+
+    <h3 class="categoria-titulo">Alitas & Boneless</h3>
+    <div class="producto"><div class="prod-main"><strong>Orden Individual</strong><span class="precio">$120</span></div><p class="descripcion">Hasta 2 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Orden', 120, 2)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Medio Kilo</strong><span class="precio">$170</span></div><p class="descripcion">Hasta 3 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Medio Kilo', 170, 3)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>El Kilo</strong><span class="precio">$320</span></div><p class="descripcion">Hasta 4 salsas a elegir.</p><button class="btn-add" onclick="abrirSalsas('Kilo', 320, 4)">+</button></div>
+
+    <h3 class="categoria-titulo">Para Compartir</h3>
+    <div class="producto"><div class="prod-main"><strong>Charola Rústica</strong><span class="precio">$310</span></div><p class="descripcion">1 Orden Alitas, 1 Orden Boneless, Papas y Dedos.</p><button class="btn-add" onclick="abrirSalsas('Charola Rústica', 310, 2)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Charola Familiar</strong><span class="precio">$380</span></div><p class="descripcion">1 Kilo, Papas y Refresco 2L.</p><button class="btn-add" onclick="abrirSalsas('Charola Familiar', 380, 4)">+</button></div>
+
+    <h3 class="categoria-titulo">Hamburguesas</h3>
+    <div class="producto"><div class="prod-main"><strong>Hamb. Arrachera</strong><span class="precio">$95</span></div><p class="descripcion">Carne de arrachera, queso y vegetales.</p><button class="btn-add" onclick="agregarAlCarrito('Hamb. Arrachera', 95)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Hamb. Boneless</strong><span class="precio">$120</span></div><p class="descripcion">Boneless bañados en salsa a elegir.</p><button class="btn-add" onclick="abrirSalsas('Hamb. Boneless', 120, 2)">+</button></div>
+
+    <h3 class="categoria-titulo">Complementos</h3>
+    <div class="producto"><div class="prod-main"><strong>Papas Francesas</strong><span class="precio">$55</span></div><p class="descripcion">Tradicionales y crujientes.</p><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas', 55)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Papas Gajo/Criscut</strong><span class="precio">$60</span></div><p class="descripcion">Sazonadas al estilo Rustic.</p><button class="btn-add" onclick="agregarAlCarrito('Papas Gajo/Criscut', 60)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Papas Locas</strong><span class="precio">$100</span></div><p class="descripcion">Bañadas en salsa y aderezo.</p><button class="btn-add" onclick="abrirSalsas('Papas Locas', 100, 1)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Papas Súper Locas</strong><span class="precio">$150</span></div><p class="descripcion">¡El doble de sabor y tamaño!</p><button class="btn-add" onclick="abrirSalsas('Papas Súper Locas', 150, 1)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Dedos de Queso (6 pz)</strong><span class="precio">$90</span></div><p class="descripcion">Acompañados de aderezo.</p><button class="btn-add" onclick="agregarAlCarrito('Dedos de Queso', 90)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Aros de Cebolla (8 pz)</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Aros de Cebolla', 60)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Chillie Cheese (8 pz)</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Chillie Cheese', 60)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Burritos Tradicionales</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Burritos Tradicionales', 60)">+</button></div>
+    <div class="producto"><div class="prod-main"><strong>Burripizza</strong><span class="precio">$65</span></div><button class="btn-add" onclick="agregarAlCarrito('Burripizza', 65)">+</button></div>
+
+    <h3 class="categoria-titulo">Finalizar Pedido</h3>
+    <div class="form-group" style="margin-top:15px;">
+        <label>Nombre:</label>
+        <input type="text" id="cliente" placeholder="Escribe tu nombre">
+    </div>
+    <div class="form-group">
+        <label>Entrega:</label>
+        <select id="entrega" onchange="actualizarUI()">
+            <option value="Domicilio">📍 Envío a Domicilio</option>
+            <option value="PickUp">🏎️ Pasar a Recoger (Pick Up)</option>
+        </select>
+        <div id="nota-envio" class="nota-envio">🏍️ Precio Final + Envío<br><small>(Se cotiza al enviar ubicación)</small></div>
+    </div>
+    <div class="form-group">
+        <label>Pago:</label>
+        <select id="pago" onchange="actualizarUI()">
+            <option value="Efectivo">💵 Efectivo</option>
+            <option value="Transferencia">📱 Transferencia</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Comentarios Extras:</label>
+        <textarea id="comentarios" placeholder="Ej: Sin cebolla, salsas aparte, aderezo extra..."></textarea>
+    </div>
+
+    <div class="resumen">
+        <button class="btn-clear" onclick="vaciarCarrito()">🗑️ Vaciar Carrito</button>
+        <h4 style="margin:0">🛒 Resumen:</h4>
+        <ul id="lista-carrito" style="list-style:none; padding:0; font-size:0.9em; margin:15px 0;"></ul>
+        <p style="font-size:1.3em; color:var(--rojo); font-weight:900;">TOTAL: $<span id="total">0</span></p>
+    </div>
+
+    <button class="btn-whatsapp" onclick="mostrarUpsell()">🚀 ENVIAR PEDIDO POR WHATSAPP</button>
+</div>
+
+<script>
+    let carrito = [];
+    let subtotal = 0;
+    
+    const menuSalsas = [
+        { n: "Mango habanero 🔥", p: "más" }, { n: "Búfalo 🔥", p: "más" }, 
+        { n: "Mango cremoso 🔥", p: "más" }, { n: "Pica fresa 🔥", p: "más" },
+        { n: "Chipotle 🌶️", p: "medio" }, { n: "Tamarindo hot 🌶️", p: "medio" }, 
+        { n: "BBQ hot 🌶️", p: "medio" },
+        { n: "Parmesano ✨", p: "bajo" }, { n: "BBQ ✨", p: "bajo" }, 
+        { n: "Tamarindo ✨", p: "bajo" }, { n: "Lemon paper ✨", p: "bajo" }
+    ];
+
+    let salsasSeleccionadas = [];
+    let limiteSalsas = 0;
+    let productoActual = null;
+
+    function sugerir(num) {
+        const box = document.getElementById('sugerencia-box');
+        const texto = document.getElementById('ia-texto');
+        const opciones = document.getElementById('ia-opciones');
+        box.style.display = 'block'; opciones.innerHTML = '';
+        if(num === 1) { 
+            texto.innerText = "🙋‍♂️ Para ti:"; crearBotonIA(opciones, "Orden Individual", 120, 2); 
+        } else if(num === 2) { 
+            texto.innerText = "👩‍❤️‍👨 Pareja:"; crearBotonIA(opciones, "Charola Rústica", 310, 2); 
+        } else if(num === 4) {
+            texto.innerText = "🥳 Team:"; crearBotonIA(opciones, "El Kilo", 320, 4); 
+        } else {
+            texto.innerText = "🐣 Niños:";
+            crearBotonIA(opciones, "Papas Francesas", 55, 0);
+            crearBotonIA(opciones, "Burritos Tradic.", 60, 0);
+            crearBotonIA(opciones, "Burripizza", 65, 0);
+        }
+    }
+
+    function crearBotonIA(contenedor, nombre, precio, salsas) {
+        let btn = document.createElement('button');
+        btn.className = 'btn-add'; btn.style.fontSize = '0.7em';
+        btn.innerText = `+ ${nombre}`;
+        btn.onclick = () => (salsas > 0) ? abrirSalsas(nombre, precio, salsas) : agregarAlCarrito(nombre, precio);
+        contenedor.appendChild(btn);
+    }
+
+    function abrirSalsas(nombre, precio, limite) {
+        productoActual = { nombre, precio };
+        limiteSalsas = limite; salsasSeleccionadas = [];
+        document.getElementById('modal-titulo').innerText = `Elige ${limite} salsas`;
+        document.getElementById('modal-instruccion').innerText = `🔥=Picoso | 🌶️=Medio | ✨=Bajo`;
+        const contenedor = document.getElementById('lista-salsas');
+        contenedor.innerHTML = '';
+        menuSalsas.forEach(s => {
+            const chip = document.createElement('div');
+            chip.className = 'salsa-chip'; chip.innerText = s.n;
+            chip.onclick = () => {
+                if (chip.classList.contains('selected')) { 
+                    chip.classList.remove('selected'); 
+                    salsasSeleccionadas = salsasSeleccionadas.filter(sel => sel !== s.n); 
+                } else if (salsasSeleccionadas.length < limiteSalsas) { 
+                    chip.classList.add('selected'); 
+                    salsasSeleccionadas.push(s.n); 
+                }
+                document.getElementById('btn-confirmar-salsas').style.display = (salsasSeleccionadas.length > 0) ? 'block' : 'none';
+            };
+            contenedor.appendChild(chip);
+        });
+        document.getElementById('modal-salsas').style.display = 'flex';
+    }
+
+    document.getElementById('btn-confirmar-salsas').onclick = () => {
+        agregarAlCarrito(`${productoActual.nombre} [${salsasSeleccionadas.join(", ")}]`, productoActual.precio);
+        document.getElementById('modal-salsas').style.display = 'none';
+    };
+
+    function agregarAlCarrito(nombre, precio) {
+        carrito.push({nombre, precio});
+        subtotal += precio;
+        actualizarUI();
+    }
+
+    function agregarUpsell(nombre, precio) {
+        agregarAlCarrito(nombre, precio);
+        alert(`¡${nombre} añadido!`);
+    }
+
+    function mostrarUpsell() {
+        const n = document.getElementById('cliente').value;
+        if(!n || carrito.length === 0) return alert("Por favor pon tu nombre y añade algo al carrito.");
+        document.getElementById('modal-upsell').style.display = 'flex';
+    }
+
+    function cerrarUpsell() { document.getElementById('modal-upsell').style.display = 'none'; }
+
+    function finalizarPedidoReal() {
+        cerrarUpsell();
+        const n = document.getElementById('cliente').value;
+        const e = document.getElementById('entrega').value;
+        const p = document.getElementById('pago').value;
+        const c = document.getElementById('comentarios').value;
+        
+        let msg = `*THE RUSTIC WINGS*%0ACliente: ${n}%0AEntrega: ${e}%0APago: ${p}%0A------------------%0A`;
+        carrito.forEach(i => msg += `- ${i.nombre}%0A`);
+        if(c) msg += `------------------%0ANotas: ${c}%0A`;
+        msg += `------------------%0A*TOTAL:* $${document.getElementById('total').innerText}`;
+        if(e === 'Domicilio') msg += `%0A%0A📍 *Enviaré ubicación.*%0A⚠️ *No incluye envío.*`;
+        if(p === 'Transferencia') msg += `%0A%0A📱 *Espero datos de tarjeta.*`;
+        window.open(`https://wa.me/528334434833?text=${msg}`);
+    }
+
+    function vaciarCarrito() { if(confirm("¿Borrar pedido?")) { carrito=[]; subtotal=0; actualizarUI(); } }
+
+    function actualizarUI() {
+        const l = document.getElementById('lista-carrito'); l.innerHTML = '';
+        carrito.forEach(i => l.innerHTML += `<li>• ${i.nombre} <span style="float:right">$${i.precio}</span></li>`);
+        let desc = document.getElementById('chk-like').checked ? (subtotal * 0.10) : 0;
+        document.getElementById('total').innerText = (subtotal - desc).toFixed(2);
+        document.getElementById('nota-envio').style.display = (document.getElementById('entrega').value === 'Domicilio') ? 'block' : 'none';
+    }
+</script>
+</body>
+</html>
