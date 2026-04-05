@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Rustic Wings - App Oficial</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Rustic Wings">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/Bvp7Pn1S/IMG-20260404-WA0006.jpg">
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/Bvp7Pn1S/IMG-20260404-WA0006.jpg">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#121212">
+
     <style>
         :root { 
             --naranja: #ff8500; --rojo: #d00000; --negro: #121212; 
@@ -39,7 +48,7 @@
         .salsa-chip { display: block; padding: 12px; margin: 8px 0; border: 2px solid var(--naranja); border-radius: 12px; font-size: 0.9em; cursor: pointer; font-weight: bold; text-align: left; }
         .salsa-chip.selected { background: var(--naranja); color: white; }
 
-        /* VENTA SUGERIDA */
+        /* VENTA SUGERIDA (UPSell) */
         .upsell-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; }
         .btn-upsell { background: #f0f0f0; border: 1px solid #ddd; padding: 10px; border-radius: 10px; font-size: 0.75em; cursor: pointer; font-weight: bold; }
 
@@ -156,7 +165,7 @@
     </div>
     <div class="form-group">
         <label>Comentarios Extras:</label>
-        <textarea id="comentarios" placeholder="Ej: Sin cebolla, salsas aparte, aderezo extra..."></textarea>
+        <textarea id="comentarios" placeholder="Ej: Sin cebolla, salsas aparte..."></textarea>
     </div>
 
     <div class="resumen">
@@ -174,12 +183,12 @@
     let subtotal = 0;
     
     const menuSalsas = [
-        { n: "Mango habanero 🔥", p: "más" }, { n: "Búfalo 🔥", p: "más" }, 
-        { n: "Mango cremoso 🔥", p: "más" }, { n: "Pica fresa 🔥", p: "más" },
-        { n: "Chipotle 🌶️", p: "medio" }, { n: "Tamarindo hot 🌶️", p: "medio" }, 
-        { n: "BBQ hot 🌶️", p: "medio" },
-        { n: "Parmesano ✨", p: "bajo" }, { n: "BBQ ✨", p: "bajo" }, 
-        { n: "Tamarindo ✨", p: "bajo" }, { n: "Lemon paper ✨", p: "bajo" }
+        { n: "Mango habanero 🔥" }, { n: "Búfalo 🔥" }, 
+        { n: "Mango cremoso 🔥" }, { n: "Pica fresa 🔥" },
+        { n: "Chipotle 🌶️" }, { n: "Tamarindo hot 🌶️" }, 
+        { n: "BBQ hot 🌶️" },
+        { n: "Parmesano ✨" }, { n: "BBQ ✨" }, 
+        { n: "Tamarindo ✨" }, { n: "Lemon paper ✨" }
     ];
 
     let salsasSeleccionadas = [];
@@ -273,8 +282,7 @@
         carrito.forEach(i => msg += `- ${i.nombre}%0A`);
         if(c) msg += `------------------%0ANotas: ${c}%0A`;
         msg += `------------------%0A*TOTAL:* $${document.getElementById('total').innerText}`;
-        if(e === 'Domicilio') msg += `%0A%0A📍 *Enviaré ubicación.*%0A⚠️ *No incluye envío.*`;
-        if(p === 'Transferencia') msg += `%0A%0A📱 *Espero datos de tarjeta.*`;
+        if(e === 'Domicilio') msg += `%0A%0A📍 *Enviaré mi ubicación abajo.*%0A⚠️ *No incluye envío.*`;
         window.open(`https://wa.me/528334434833?text=${msg}`);
     }
 
@@ -285,8 +293,4 @@
         carrito.forEach(i => l.innerHTML += `<li>• ${i.nombre} <span style="float:right">$${i.precio}</span></li>`);
         let desc = document.getElementById('chk-like').checked ? (subtotal * 0.10) : 0;
         document.getElementById('total').innerText = (subtotal - desc).toFixed(2);
-        document.getElementById('nota-envio').style.display = (document.getElementById('entrega').value === 'Domicilio') ? 'block' : 'none';
-    }
-</script>
-</body>
-</html>
+        doc
