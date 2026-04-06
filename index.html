@@ -63,9 +63,9 @@
 
     <div class="categoria-titulo">Promociones 🎊</div>
     <div class="producto">
-        <div class="prod-info"><strong>Miércoles 3x300 🍗</strong><span class="precio">$300</span><span class="descripcion">3 órdenes boneless (6 salsas total por promo)</span></div>
+        <div class="prod-info"><strong>Miércoles 3x300 🍗</strong><span class="precio">$300</span><span class="descripcion">3 órdenes boneless (2 salsas c/u)</span></div>
         <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-3x', -1)">-</button><div class="qty-num" id="q-3x">1</div><button class="btn-qty" onclick="changeVal('q-3x', 1)">+</button></div>
-        <button class="btn-add-main" onclick="abrirSalsas('PROMO 3x300', 300, 6, 'q-3x')">OK</button>
+        <button class="btn-add-main" onclick="abrirSalsas('PROMO 3x300', 300, 2, 'q-3x', 3)">OK</button>
     </div>
 
     <div class="categoria-titulo">Alitas & Boneless 🍗</div>
@@ -79,17 +79,27 @@
         <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-med', -1)">-</button><div class="qty-num" id="q-med">1</div><button class="btn-qty" onclick="changeVal('q-med', 1)">+</button></div>
         <button class="btn-add-main" onclick="abrirSalsas('Medio Kilo', 170, 3, 'q-med')">OK</button>
     </div>
+    <div class="producto">
+        <div class="prod-info"><strong>El Kilo ⚖️</strong><span class="precio">$320</span><span class="descripcion">4 salsas por orden</span></div>
+        <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-kil', -1)">-</button><div class="qty-num" id="q-kil">1</div><button class="btn-qty" onclick="changeVal('q-kil', 1)">+</button></div>
+        <button class="btn-add-main" onclick="abrirSalsas('El Kilo', 320, 4, 'q-kil')">OK</button>
+    </div>
 
     <div class="categoria-titulo">Complementos 🍟</div>
     <div class="producto">
-        <div class="prod-info"><strong>Papas Locas 😜</strong><span class="precio">$100</span><span class="descripcion">Bañadas en salsa</span></div>
+        <div class="prod-info"><strong>Papas Locas 😜</strong><span class="precio">$100</span><span class="descripcion">1 salsa a elegir</span></div>
         <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-loc', -1)">-</button><div class="qty-num" id="q-loc">1</div><button class="btn-qty" onclick="changeVal('q-loc', 1)">+</button></div>
         <button class="btn-add-main" onclick="abrirSalsas('Papas Locas 😜', 100, 1, 'q-loc')">OK</button>
     </div>
     <div class="producto">
-        <div class="prod-info"><strong>Súper Locas 🤪</strong><span class="precio">$150</span></div>
+        <div class="prod-info"><strong>Súper Locas 🤪</strong><span class="precio">$150</span><span class="descripcion">1 salsa a elegir</span></div>
         <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-sloc', -1)">-</button><div class="qty-num" id="q-sloc">1</div><button class="btn-qty" onclick="changeVal('q-sloc', 1)">+</button></div>
         <button class="btn-add-main" onclick="abrirSalsas('Súper Locas 🤪', 150, 1, 'q-sloc')">OK</button>
+    </div>
+    <div class="producto">
+        <div class="prod-info"><strong>Papas Gajo 🥔</strong><span class="precio">$60</span></div>
+        <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-gaj', -1)">-</button><div class="qty-num" id="q-gaj">1</div><button class="btn-qty" onclick="changeVal('q-gaj', 1)">+</button></div>
+        <button class="btn-add-main" onclick="agregarSimple('Papas Gajo 🥔', 60, 'q-gaj')">OK</button>
     </div>
     <div class="producto">
         <div class="prod-info"><strong>Papas Francesas 🍟</strong><span class="precio">$55</span></div>
@@ -97,43 +107,49 @@
         <button class="btn-add-main" onclick="agregarSimple('Papas Francesas 🍟', 55, 'q-fra')">OK</button>
     </div>
     <div class="producto">
-        <div class="prod-info"><strong>Dedos de Queso 🧀</strong><span class="precio">$90</span></div>
-        <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-ded', -1)">-</button><div class="qty-num" id="q-ded">1</div><button class="btn-qty" onclick="changeVal('q-ded', 1)">+</button></div>
-        <button class="btn-add-main" onclick="agregarSimple('Dedos Queso 🧀', 90, 'q-ded')">OK</button>
-    </div>
-    <div class="producto">
         <div class="prod-info"><strong>Aros de Cebolla 🧅</strong><span class="precio">$60</span></div>
         <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-aro', -1)">-</button><div class="qty-num" id="q-aro">1</div><button class="btn-qty" onclick="changeVal('q-aro', 1)">+</button></div>
         <button class="btn-add-main" onclick="agregarSimple('Aros Cebolla 🧅', 60, 'q-aro')">OK</button>
     </div>
     <div class="producto">
-        <div class="prod-info"><strong>Burripizza 🍕🌯</strong><span class="precio">$65</span></div>
-        <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-burp', -1)">-</button><div class="qty-num" id="q-burp">1</div><button class="btn-qty" onclick="changeVal('q-burp', 1)">+</button></div>
-        <button class="btn-add-main" onclick="agregarSimple('Burripizza 🍕🌯', 65, 'q-burp')">OK</button>
+        <div class="prod-info"><strong>Dedos de Queso 🧀</strong><span class="precio">$90</span></div>
+        <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-ded', -1)">-</button><div class="qty-num" id="q-ded">1</div><button class="btn-qty" onclick="changeVal('q-ded', 1)">+</button></div>
+        <button class="btn-add-main" onclick="agregarSimple('Dedos Queso 🧀', 90, 'q-ded')">OK</button>
     </div>
     <div class="producto">
         <div class="prod-info"><strong>Chillie Cheese 🧀🔥</strong><span class="precio">$60</span></div>
         <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-chi', -1)">-</button><div class="qty-num" id="q-chi">1</div><button class="btn-qty" onclick="changeVal('q-chi', 1)">+</button></div>
         <button class="btn-add-main" onclick="agregarSimple('Chillie Cheese 🧀🔥', 60, 'q-chi')">OK</button>
     </div>
+    <div class="producto">
+        <div class="prod-info"><strong>Burritos Tradicionales 🌯</strong><span class="precio">$60</span></div>
+        <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-trad', -1)">-</button><div class="qty-num" id="q-trad">1</div><button class="btn-qty" onclick="changeVal('q-trad', 1)">+</button></div>
+        <button class="btn-add-main" onclick="agregarSimple('Burrito Trad. 🌯', 60, 'q-trad')">OK</button>
+    </div>
+    <div class="producto">
+        <div class="prod-info"><strong>Burripizza 🍕🌯</strong><span class="precio">$65</span></div>
+        <div class="controles-qty"><button class="btn-qty" onclick="changeVal('q-burp', -1)">-</button><div class="qty-num" id="q-burp">1</div><button class="btn-qty" onclick="changeVal('q-burp', 1)">+</button></div>
+        <button class="btn-add-main" onclick="agregarSimple('Burripizza 🍕🌯', 65, 'q-burp')">OK</button>
+    </div>
 
     <div class="categoria-titulo">🛵 Datos de Entrega</div>
     <div style="padding:15px; background:#f9f9f9;">
         <label>Tu Nombre:</label>
-        <input type="text" id="cliente" placeholder="👤 JR / Junior">
+        <input type="text" id="cliente" placeholder="👤 Ej: JR / Junior">
         <label>¿Cómo entregamos?</label>
         <select id="entrega"><option value="Domicilio">📍 Domicilio (Se cotiza envío)</option><option value="PickUp">🏎️ Recoger en Sucursal</option></select>
         <label>Método de Pago:</label>
         <select id="pago"><option value="Efectivo">💵 Efectivo</option><option value="Transferencia">📱 Transferencia</option></select>
-        <textarea id="comentarios" placeholder="Notas: (Ej. Sin aderezo, cambio de $500, etc.)"></textarea>
+        <label>Notas especiales:</label>
+        <textarea id="comentarios" placeholder="Ej. Sin aderezo, cambio de $200, casa portón blanco..."></textarea>
     </div>
 
     <div class="categoria-titulo">🛒 Tu Carrito</div>
     <div style="padding:15px;">
         <div id="lista-carrito"></div>
         <div style="font-size:1.6em; font-weight:bold; color:var(--rojo); text-align:center; margin:15px 0;">TOTAL: $<span id="total">0</span></div>
-        <a href="https://www.facebook.com/share/17xcTainF2/" target="_blank" class="btn-fb">👍 Página de Facebook</a>
-        <button class="btn-whatsapp" onclick="abrirSugerencias()">🚀 ENVIAR PEDIDO A WHATSAPP</button>
+        <a href="https://www.facebook.com/share/17xcTainF2/" target="_blank" class="btn-fb">👍 Nuestra Página de Facebook</a>
+        <button class="btn-whatsapp" onclick="abrirSugerencias()">🚀 CONFIRMAR PEDIDO</button>
     </div>
 </div>
 
@@ -149,13 +165,14 @@
 
 <div id="modal-upselling" class="modal-overlay">
     <div class="modal-content">
-        <h3 style="color:var(--rojo);">🤤 ¿ALGO MÁS PARA EL ANTOJO?</h3>
+        <h3 style="color:var(--rojo);">🤤 ¡EL ANTOJO FINAL!</h3>
+        <p>¿No se te olvida nada para acompañar?</p>
         <div id="lista-upselling">
-            <div class="sugerencia-row">Burritos Trad. $60 <button class="btn-add-main" onclick="agregarSugerencia('Burrito Trad. 🌯', 60)">+ ADD</button></div>
-            <div class="sugerencia-row">Papas Gajo $60 <button class="btn-add-main" onclick="agregarSugerencia('Papas Gajo 🥔', 60)">+ ADD</button></div>
+            <div class="sugerencia-row">Burripizza $65 <button class="btn-add-main" onclick="agregarSugerencia('Burripizza 🍕🌯', 65)">+ ADD</button></div>
+            <div class="sugerencia-row">Chillie Cheese $60 <button class="btn-add-main" onclick="agregarSugerencia('Chillie Cheese 🧀🔥', 60)">+ ADD</button></div>
             <div class="sugerencia-row">Dedos Queso $90 <button class="btn-add-main" onclick="agregarSugerencia('Dedos Queso 🧀', 90)">+ ADD</button></div>
         </div>
-        <button class="btn-whatsapp" onclick="finalizarPedido()">ESTÁ BIEN ASÍ, ENVIAR ✅</button>
+        <button class="btn-whatsapp" onclick="finalizarPedido()">ASÍ ESTÁ BIEN, ENVIAR ✅</button>
     </div>
 </div>
 
@@ -172,11 +189,10 @@
 
     function cerrarModales() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
 
-    function abrirSalsas(n, p, salsasXOrden, idQty) {
+    function abrirSalsas(n, p, salsasXOrden, idQty, multiplicadorPromo = 1) {
         let q = parseInt(document.getElementById(idQty).innerText);
         productoActual = {n, p, q}; 
-        // AQUÍ ESTÁ EL TRUCO: Multiplicamos salsas por cantidad de órdenes
-        limiteSalsasTotal = salsasXOrden * q; 
+        limiteSalsasTotal = salsasXOrden * q * multiplicadorPromo; 
         seleccionSalsas = {};
         document.getElementById('modal-titulo').innerText = `${q}x ${n}`;
         actualizarListaSalsas();
@@ -206,7 +222,6 @@
 
     document.getElementById('btn-conf-salsa').onclick = () => {
         let sStr = Object.entries(seleccionSalsas).filter(e => e[1] > 0).map(e => `${e[1]}x ${e[0]}`).join(", ");
-        // Agregamos como un solo bloque para que el ticket sea legible
         carrito.push({id: Date.now(), n: `${productoActual.q}x ${productoActual.n} (${sStr})`, p: (productoActual.p * productoActual.q)});
         subtotal += (productoActual.p * productoActual.q);
         actualizarUI(); cerrarModales();
@@ -236,7 +251,7 @@
     }
 
     function abrirSugerencias() {
-        if(!document.getElementById('cliente').value || carrito.length === 0) return alert("JR, falta tu nombre o productos en el carrito.");
+        if(!document.getElementById('cliente').value || carrito.length === 0) return alert("Junior, falta el nombre o elegir los productos.");
         document.getElementById('modal-upselling').style.display = 'flex';
     }
 
@@ -244,7 +259,7 @@
         carrito.push({id: Date.now(), n: `1x ${n}`, p: p});
         subtotal += p;
         actualizarUI();
-        alert("¡Agregado!");
+        alert("¡Agregado al antojo!");
     }
 
     function finalizarPedido() {
