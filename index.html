@@ -6,7 +6,7 @@
     <title>The Rustic Wings - App Oficial</title>
 
     <style>
-        :root { --naranja: #ff8500; --rojo: #d00000; --negro: #121212; --blanco: #ffffff; --mostaza: #ffb703; }
+        :root { --naranja: #ff8500; --rojo: #d00000; --negro: #121212; --blanco: #ffffff; --mostaza: #ffb703; --azul-fb: #1877F2; }
         * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; font-family: sans-serif; }
         body { background: var(--negro); margin: 0; padding: 10px; color: #333; }
         
@@ -39,7 +39,8 @@
         .cart-item { display: flex; justify-content: space-between; align-items: center; background: #f9f9f9; padding: 10px; margin-bottom: 5px; border-radius: 10px; border: 1px solid #ddd; font-size: 0.85em; }
         .btn-del { background: #fee2e2; color: #dc2626; border: none; padding: 5px 10px; border-radius: 8px; font-weight: bold; }
 
-        .btn-whatsapp { background: #25d366; color: white; border: none; width: 100%; padding: 18px; font-size: 1.1em; font-weight: bold; border-radius: 15px; margin-top: 20px; cursor: pointer; touch-action: manipulation; box-shadow: 0 5px 0 #128c7e; }
+        .btn-fb { background: var(--azul-fb); color: white; border: none; width: 100%; padding: 12px; font-weight: bold; border-radius: 12px; margin-top: 10px; cursor: pointer; text-decoration: none; display: inline-block; }
+        .btn-whatsapp { background: #25d366; color: white; border: none; width: 100%; padding: 18px; font-size: 1.1em; font-weight: bold; border-radius: 15px; margin-top: 10px; cursor: pointer; touch-action: manipulation; box-shadow: 0 5px 0 #128c7e; }
         
         input, select, textarea { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #ddd; font-size: 16px; margin: 5px 0; display: block; background: white; }
         label { font-size: 0.85em; font-weight: bold; margin-top: 10px; display: block; color: #444; }
@@ -75,17 +76,17 @@
     <h3 class="categoria-titulo">Alitas & Boneless 🍗</h3>
     <div class="producto"><div class="prod-info"><strong>Orden Individual</strong><span class="precio">$120</span><span class="descripcion">Hasta 2 salsas a elegir.</span></div><button class="btn-add" onclick="abrirSalsas('Orden Ind.', 120, 2)">+</button></div>
     <div class="producto"><div class="prod-info"><strong>Medio Kilo</strong><span class="precio">$170</span><span class="descripcion">Hasta 3 salsas a elegir.</span></div><button class="btn-add" onclick="abrirSalsas('Medio Kilo', 170, 3)">+</button></div>
-    <div class="producto"><div class="prod-info"><strong>El Kilo</strong><span class="precio">$320</span><span class="descripcion">Hasta 4 salsas a elegir.</span></div><button class="btn-add" onclick="abrirSalsas('El Kilo', 320, 4)">+</button></div>
+    <div class="producto"><div class="prod-info"><strong>El Kilo ⚖️</strong><span class="precio">$320</span><span class="descripcion">Hasta 4 salsas a elegir.</span></div><button class="btn-add" onclick="abrirSalsas('El Kilo', 320, 4)">+</button></div>
 
     <h3 class="categoria-titulo">Para Compartir 🤝</h3>
     <div class="producto"><div class="prod-info"><strong>Charola Rústica 🧺</strong><span class="precio">$310</span><span class="descripcion">Alitas, Boneless, Papas y Dedos.</span></div><button class="btn-add" onclick="abrirSalsas('Charola Rústica', 310, 2, true)">+</button></div>
     <div class="producto"><div class="prod-info"><strong>Charola Familiar 👨‍👩‍👧‍👦</strong><span class="precio">$380</span><span class="descripcion">1 Kilo, Papas y Refresco 2L.</span></div><button class="btn-add" onclick="abrirSalsas('Charola Familiar', 380, 4)">+</button></div>
 
     <h3 class="categoria-titulo">Complementos 🍟</h3>
-    <div class="producto"><div class="prod-info"><strong>Papas Francesas 🍟</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas 🍟', 55)">+</button></div>
+    <div class="producto"><div class="prod-info"><strong>Papas Francesas 🍟</strong><span class="precio">$55</span></div><button class="btn-add" onclick="agregarAlCarrito('Papas Francesas 🍟', 55)">+</button></div>
     <div class="producto"><div class="prod-info"><strong>Papas Gajo / Criscut 🥔</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Papas Gajo/Criscut 🥔', 60)">+</button></div>
     <div class="producto"><div class="prod-info"><strong>Papas Locas 😜</strong><span class="precio">$100</span><span class="descripcion">Bañadas en salsa y aderezo.</span></div><button class="btn-add" onclick="abrirSalsas('Papas Locas 😜', 100, 1)">+</button></div>
-    <div class="producto"><div class="prod-info"><strong>Papas Súper Locas 🤪</strong><span class="precio">$170</span></div><button class="btn-add" onclick="abrirSalsas('Papas Súper Locas 🤪', 150, 1)">+</button></div>
+    <div class="producto"><div class="prod-info"><strong>Papas Súper Locas 🤪</strong><span class="precio">$150</span></div><button class="btn-add" onclick="abrirSalsas('Papas Súper Locas 🤪', 150, 1)">+</button></div>
     <div class="producto"><div class="prod-info"><strong>Dedos de Queso (6 pz) 🧀</strong><span class="precio">$90</span></div><button class="btn-add" onclick="agregarAlCarrito('Dedos de Queso 🧀', 90)">+</button></div>
     <div class="producto"><div class="prod-info"><strong>Aros de Cebolla 🧅</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Aros de Cebolla 🧅', 60)">+</button></div>
     <div class="producto"><div class="prod-info"><strong>Chillie Cheese 🧀🔥</strong><span class="precio">$60</span></div><button class="btn-add" onclick="agregarAlCarrito('Chillie Cheese 🧀🔥', 60)">+</button></div>
@@ -107,14 +108,16 @@
         <div style="display:flex; justify-content:space-between;"><strong>🛒 Carrito:</strong><button onclick="limpiarCarrito()" style="font-size:0.7em; color:gray; border:none; background:none;">Vaciar</button></div>
         <div id="lista-carrito" style="margin-top:10px;"></div>
         <div style="font-size:1.3em; font-weight:bold; color:var(--rojo); margin-top:10px;">TOTAL: $<span id="total">0</span></div>
+        
+        <a href="https://www.facebook.com/tu_pagina" target="_blank" class="btn-fb">👍 Dale Like a nuestra página</a>
+        <button class="btn-whatsapp" onclick="verificarSugerencia()">🚀 ENVIAR PEDIDO</button>
     </div>
-    <button class="btn-whatsapp" onclick="finalizarPedido()">🚀 ENVIAR PEDIDO</button>
 </div>
 
 <div id="modal-salsas" class="modal-overlay">
     <div class="modal-content">
         <h3 id="modal-titulo">Salsas</h3>
-        <p id="conteo-salsas" style="font-weight:bold; color:var(--naranja);">Quedan: 0</p>
+        <p id="conteo-salsas" style="font-weight:bold; color:var(--naranja);">Seleccionadas: 0 de 0</p>
         <div id="extra-rustica" style="display:none; background:#eee; padding:10px; border-radius:10px; margin-bottom:10px;">
             <label><input type="checkbox" id="chk-boneless"> ¿Puros boneless? (+$20)</label>
         </div>
@@ -157,36 +160,30 @@
 
     function actualizarListaSalsas() {
         const cont = document.getElementById('lista-salsas'); cont.innerHTML = '';
-        let totalSeleccionado = Object.values(seleccionSalsas).reduce((a, b) => a + b, 0);
-        document.getElementById('conteo-salsas').innerText = `Seleccionadas: ${totalSeleccionado} de ${limiteSalsas}`;
-        
+        let totalSel = Object.values(seleccionSalsas).reduce((a, b) => a + b, 0);
+        document.getElementById('conteo-salsas').innerText = `Seleccionadas: ${totalSel} de ${limiteSalsas}`;
         salsasMenu.forEach(s => {
             let qty = seleccionSalsas[s] || 0;
             let div = document.createElement('div'); div.className = 'salsa-item';
-            div.innerHTML = `<span>${s}</span>
-                <div class="salsa-controles">
-                    <button class="btn-qty" onclick="cambiarSalsa('${s}', -1)">-</button>
-                    <span>${qty}</span>
-                    <button class="btn-qty" onclick="cambiarSalsa('${s}', 1)">+</button>
-                </div>`;
+            div.innerHTML = `<span>${s}</span><div class="salsa-controles"><button class="btn-qty" onclick="cambiarSalsa('${s}', -1)">-</button><span>${qty}</span><button class="btn-qty" onclick="cambiarSalsa('${s}', 1)">+</button></div>`;
             cont.appendChild(div);
         });
-        document.getElementById('btn-conf-salsa').style.display = (totalSeleccionado === limiteSalsas) ? 'block' : 'none';
+        document.getElementById('btn-conf-salsa').style.display = (totalSel === limiteSalsas) ? 'block' : 'none';
     }
 
-    function cambiarSalsa(salsa, cambio) {
-        let total = Object.values(seleccionSalsas).reduce((a, b) => a + b, 0);
-        if(!seleccionSalsas[salsa]) seleccionSalsas[salsa] = 0;
-        if(cambio > 0 && total < limiteSalsas) seleccionSalsas[salsa]++;
-        if(cambio < 0 && seleccionSalsas[salsa] > 0) seleccionSalsas[salsa]--;
+    function cambiarSalsa(s, c) {
+        let t = Object.values(seleccionSalsas).reduce((a, b) => a + b, 0);
+        if(!seleccionSalsas[s]) seleccionSalsas[s] = 0;
+        if(c > 0 && t < limiteSalsas) seleccionSalsas[s]++;
+        if(c < 0 && seleccionSalsas[s] > 0) seleccionSalsas[s]--;
         actualizarListaSalsas();
     }
 
     document.getElementById('btn-conf-salsa').onclick = () => {
         let n = productoActual.n, p = productoActual.p;
         if(document.getElementById('chk-boneless').checked) { n += " (Puros Boneless)"; p += 20; }
-        let salsasStr = Object.entries(seleccionSalsas).filter(e => e[1] > 0).map(e => `${e[1]}x ${e[0]}`).join(", ");
-        agregarAlCarrito(`${n} (${salsasStr})`, p);
+        let sStr = Object.entries(seleccionSalsas).filter(e => e[1] > 0).map(e => `${e[1]}x ${e[0]}`).join(", ");
+        agregarAlCarrito(`${n} (${sStr})`, p);
         cerrarModales();
     };
 
@@ -203,6 +200,14 @@
         });
         document.getElementById('total').innerText = subtotal;
         document.getElementById('aviso-envio').style.display = document.getElementById('entrega').value === 'Domicilio' ? 'block' : 'none';
+    }
+
+    function verificarSugerencia() {
+        const tienePapas = carrito.some(i => i.n.includes("Papas"));
+        if (!tienePapas && confirm("¡Espera! 🍗 ¿No quieres agregar unas Papas Francesas 🍟 o unos Dedos de Queso 🧀 por solo $55?")) {
+            return; // Se queda para agregar
+        }
+        finalizarPedido();
     }
 
     function finalizarPedido() {
